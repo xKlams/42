@@ -17,36 +17,33 @@ void	ft_putchar(char a)
 	write(1, &a, 1);
 }
 
+void	check_space_minus(char *str, int *i, int *n_minus)
+{
+	while (str[*i] == '+' || str[*i] == '-'
+		|| (str[*i] == ' ' || (str[*i] >= 9 && str[*i] <= 13)))
+	{
+		if (str[*i] == '-')
+			(*n_minus)++;
+		(*i)++;
+	}
+}
+
 int	ft_atoi(char *str)
 {
-	int i;
+	int	i;
 	int	n_minus;
-	int number;
+	int	number;
 
 	i = 0;
 	number = 0;
 	n_minus = 0;
-	while (str[i] == ' ')
-	{
-		i++;
-	}
-	while (str[i] == '+' || str[i] == '-')
-	{
-		if (str[i] == '-')
-			n_minus++;
-		if (!str[i])
-			return (0);
-		i++;
-	}
+	check_space_minus(str, &i, &n_minus);
 	while (str[i])
 	{
-		if(str[i] >= '0' && str[i] <= '9')
-		{
-		number = 10*number + (str[i] - '0'); 
-		}else
-		{
+		if (str[i] >= '0' && str[i] <= '9')
+			number = 10 * number + (str[i] - '0');
+		else
 			return (number);
-		}
 		i++;
 	}
 	if (n_minus % 2 == 1)
