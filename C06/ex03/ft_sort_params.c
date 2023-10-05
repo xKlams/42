@@ -10,9 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
+
 void	ft_putstr(char *str)
 {
-	while(*str)
+	while (*str)
 	{
 		write(1, str, 1);
 		str++;
@@ -32,19 +34,19 @@ int	ft_strcmp(char *s1, char *s2)
 	return (s1[i] - s2[i]);
 }
 
-void	ft_sort_int_tab(int **tab, int size)
+void	ft_sort_int_tab(char **tab, int size)
 {
-	int	i;
-	int	j;
-	int	swap;
+	int		i;
+	int		j;
+	char	*swap;
 
-	i = 1;
+	i = 0;
 	while (i < size - 1)
 	{
 		j = size - 1;
 		while (j > i)
 		{
-			if (ft_strcmp(tab[j], tab[j + 1]) < 0)
+			if (ft_strcmp(tab[j], tab[j - 1]) < 0)
 			{
 				swap = tab[j];
 				tab[j] = tab[j - 1];
@@ -56,7 +58,15 @@ void	ft_sort_int_tab(int **tab, int size)
 	}
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	
+	int	i;
+
+	i = 1;
+	ft_sort_int_tab(argv, argc);
+	while (i < argc)
+	{
+		ft_putstr(argv[i]);
+		i++;
+	}
 }
