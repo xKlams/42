@@ -9,27 +9,26 @@ int	ft_strlen(char *str)
 		i++;
 	return (i);
 }
-#include<stdio.h>
 
 char	*ft_strcpy(char *str, char *cpy)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		cpy[i] = str[i];
 		i++;
 	}
-	return(cpy);
+	return (cpy);
 }
 
 char	*ft_strdup(char *str)
 {
 	char	*copy;
-	
+
 	copy = (char *)(malloc(ft_strlen(str) + 1));
 	copy = ft_strcpy(str, copy);
 	copy[ft_strlen(str)] = 0;
-	return(copy);
+	return (copy);
 }
