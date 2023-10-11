@@ -1,50 +1,48 @@
 char	*ft_strjoin(int size, char  **strs, char *sep)
 {
 	char	*str;
-	int		i;
-	int		j;
+	int		i[3];
 	int		index;
-	int		k;
 
-	i = 0;
-	j = 0;
+	i[0] = 0;
+	i[1] = 0;
 	index = 0;
-	while (i < size)
+	while (i[0] < size)
 	{
-		while (strs[i][j])
+		while (strs[i[0]][i[1]])
 		{
-			j++;
+			i[1]++;
 			index++;
 		}
-		i++;
-		j = 0;
+		i[0]++;
+		i[1] = 0;
 	}
-	i = 0;
-	while (sep[i])
-		i++;
-	str = (char *)malloc(i * size * index + 1);
-	str[i * size * index] = 0;
+	i[0] = 0;
+	while (sep[i[0]])
+		i[0]++;
+	str = (char *)malloc(i[0] * size * index + 1);
+	str[i[0] * size * index] = 0;
 	index = 0;
-	i = 0;
-	j = 0;
-	k = 0;
-	while (i < size)
+	i[0] = 0;
+	i[1] = 0;
+	i[2] = 0;
+	while (i[0] < size)
 	{
-		while(strs[i][j])
+		while(strs[i[0]][i[1]])
 		{
-			str[index] = strs[i][j];
-			j++;
+			str[index] = strs[i[0]][i[1]];
+			i[1]++;
 		 	index++;
 		}
-		while(sep[k] != 0 && i != size - 1)
+		while(sep[i[2]] != 0 && i[0] != size - 1)
 		{
-			str [index] = sep[k];
-			k++;
+			str[index] = sep[i[2]];
+			i[2]++;
 			index++;
 		}
-		k = 0;
-		j = 0;
-		i++;
+		i[2] = 0;
+		i[1] = 0;
+		i[0]++;
 	}
 	return (str);
 }
