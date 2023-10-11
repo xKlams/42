@@ -10,18 +10,25 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
+char	*ft_strcpy(char *str, char *cpy)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		cpy[i] = str[i];
+		i++;
+	}
+	return (cpy);
+}
+
 char	*ft_strdup(char *str)
 {
 	char	*copy;
-	int		i;
 
-	i = 0;
 	copy = (char *)(malloc(ft_strlen(str) + 1));
-	while (str[i])
-	{
-		copy[i] = str[i];
-		i++;
-	}
-	copy[i] = 0;
+	copy = ft_strcpy(str, copy);
+	copy[ft_strlen(str)] = 0;
 	return (copy);
 }
