@@ -1,64 +1,72 @@
-void	initialize(int *i, int *index)
-{
-	*index = 0;
-	i[0] = 0;
-	i[1] = 0;
-	i[2] = 0;
-}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fde-sist <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/12 10:46:18 by fde-sist          #+#    #+#             */
+/*   Updated: 2023/10/12 10:46:19 by fde-sist         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	ft_set_index(char **strs, int *i, int *index, int *size)
+#include <stdlib.h>
+
+int	ft_len(char **str)
 {
-	initialize(i, index);
-	while (i[0] < *size)
+	int	i;
+	int	j;
+	int	k;
+
+	i = 0;
+	k = -1;
+	while (str[++k])
 	{
-		while (strs[i[0]][i[1]])
-		{
-			(i[1])++;
-			(*index)++;
-		}
-		(i[0])++;
-		i[1] = 0;
+		j = 0;
+		while (str[k][j++])
+			i++;
 	}
+	return (i);
 }
 
-void	initialize_and_augment(int *i)
+int	ft_strlen(char *str)
 {
-	i[2] = 0;
-	i[1] = 0;
-	(i[0])++;
-}
+	int	i;
 
-void	a_really_nice_while(char *sep, char *str, int *i, int *index)
-{
-	str[*index] = sep[i[2]];
-	i[2]++;
-	(*index)++;
+	i = 0;
+	while (*str)
+	{
+		i++;
+		str++;
+	}
+	return (i);
 }
 
 char	*ft_strjoin(int size, char **strs, char *sep)
 {
-	char	*str;
-	int		i[3];
-	int		index;
+	char	*arr;
+	int		i;
+	int		j;
+	int		k;
 
-	ft_set_index(strs, i, &index, &size);
-	i[0] = 0;
-	while (sep[i[0]])
-		i[0]++;
-	str = (char *)malloc(i[0] * size * index + 1);
-	str[i[0] * size * index] = 0;
-	initialize(i, &index);
-	while (i[0] < size)
+	j = 0;
+	k = 0;
+	if (size == 0)
+		return (NULL);
+	arr = (char *)malloc((size - 1) * ft_strlen(sep) + ft_len(strs) + 1);
+	while (*strs)
 	{
-		while (strs[i[0]][i[1]])
+		while (**strs)
 		{
-			str[index] = strs[i[0]][i[1]];
-			i[1]++;
-			index++;
+			arr[j++] = **strs;
+			(*strs)++;
 		}
-		while (sep[i[2]] != 0 && i[0] != size - 1)
-			a_really_nice_while(sep, str, i, &index);
-		initialize_and_augment(i);
+		i = 0;
+		while (sep[i] && k < size - 1)
+			arr[j++] = sep[i++];
+		k++;
+		strs++;
 	}
-	return (str);
+	arr[j] = 0;
+	return (arr);
 }

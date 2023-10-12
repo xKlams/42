@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 int ft_len(char *str)
 {
     int i;
@@ -47,11 +50,12 @@ int atoi_base(char *nbr, char *base_from)
     int i;
     int j;
     int int_nbr;
+
     i = 0;
     j = 0;
     int_nbr = 0;
-    while(nbr[i])
-        while(base_from[j])
+    while (nbr[i])
+        while (base_from[j])
         {
             if (nbr[i] == base_from[j])
             {
@@ -63,7 +67,7 @@ int atoi_base(char *nbr, char *base_from)
             j++;
         }
     if (ft_check_sign_space(nbr) % 2 == 1)
-        return(-1 * int_nbr);
+        return (-1 * int_nbr);
     return (int_nbr);
 }
 
@@ -111,8 +115,12 @@ int     checkbase(char *base)
         return (1);
 }
 
-void    iteration(long int nbr, char *base, int counter, char *nb)
+char    *ft_putnbr_base(int nbr, char *base)
 {
+    char    *nb;
+
+    nb = (char *)malloc(space_needed(nbr, ft_len(base)) + 1);
+    nb[space_needed(nbr, ft_len(base))] = 0;
     if (nbr == 0 && counter == 0)
         nb[0] = base[0];
     if (nbr < 0)
@@ -121,20 +129,11 @@ void    iteration(long int nbr, char *base, int counter, char *nb)
         nbr *= -1;
         counter++;
     }
-    if (nbr && checkbase(base))
+    while (nbr && checkbase(base))
     {
         nb[counter] = nbr % ft_len(base);
         iteration(nbr / ft_len(base), base, ++counter, nb);
     }
-}
-
-char    *ft_putnbr_base(int nbr, char *base)
-{
-    char    *nb;
-
-    nb = (char *)malloc(space_needed(nbr, ft_len(base)));
-    nb[space_needed(nbr, ft_len(base))] = 0;
-    iteration((long int) nbr, base, 0, nb);
     return(nb);
 }
 
@@ -147,4 +146,9 @@ char    *ft_convert_base(char *nbr, char *base_from, char *base_to)
     number = ft_putnbr_base(num_dec, base_to);
     return(number);
 
+}
+
+int main()
+{
+    printf("%s", ft_convert_base("11111", "01", "0123456789"));
 }
