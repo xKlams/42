@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-sist <fde-sist@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/06 16:50:57 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/02/06 16:51:44 by fde-sist         ###   ########.fr       */
+/*   Created: 2024/02/07 12:53:37 by fde-sist          #+#    #+#             */
+/*   Updated: 2024/02/07 14:20:51 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isdigit(int a)
+void	*ft_memcpy(void *dest, const void *src, size_t lenght)
 {
-	return (a <= '9' && a >= '0');
+	char		*aux_dest;
+	const char	*aux_src;
+
+	if(dest == NULL && src == NULL)
+		return NULL;
+	aux_dest = dest;
+	aux_src = src;
+	while(lenght--)
+		*(aux_dest + lenght) = *(aux_src + lenght);
+	return dest;
 }

@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: fde-sist <fde-sist@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/02/06 16:51:14 by fde-sist          #+#    #+#              #
+#    Updated: 2024/02/07 12:53:50 by fde-sist         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 # Nome del progetto
 NAME = libft.a
 
@@ -13,6 +25,8 @@ SRC_FILES = ft_isalpha.c \
 			ft_isprint.c \
 			ft_strlen.c \
 			ft_memset.c \
+			ft_bzero.c \
+			ft_memcpy.c \
 
 # Costruzione della lista di oggetti
 OBJ_FILES = $(SRC_FILES:.c=.o)
