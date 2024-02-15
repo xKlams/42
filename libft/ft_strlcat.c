@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fde-sist <fde-sist@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fde-sist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/07 12:53:37 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/02/15 11:30:35 by fde-sist         ###   ########.fr       */
+/*   Created: 2024/02/15 13:33:35 by fde-sist          #+#    #+#             */
+/*   Updated: 2024/02/15 13:48:03 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t lenght)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	char		*aux_dest;
-	const char	*aux_src;
+	int	i;
+	int	dst_len;
 
-	if (dest == NULL && src == NULL)
-		return (NULL);
-	aux_dest = dest;
-	aux_src = src;
-	while (lenght--)
-		*(aux_dest + lenght) = *(aux_src + lenght);
-	return (dest);
+	i = 0;
+	while (dst[i++]);
+	dst_len = --i;
+	
+	while (src[i - dst_len] && i - dst_len < (int)(size - 1))
+	{
+		dst[i] = src[i - dst_len];
+		i++;
+	}
+	return (i);
 }
