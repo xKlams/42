@@ -6,7 +6,7 @@
 /*   By: fde-sist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 18:21:11 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/02/17 18:31:18 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/02/17 18:40:28 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void	*ft_calloc(size_t nmeb, size_t size)
 {
 	void	*output;
 	size_t	i;
-	
+
 	i = 0;
 	output = (void *)malloc(nmeb * size);
-	if(!output)
+	if (!output)
 		return (NULL);
 	while (i != size * nmeb)
 	{
