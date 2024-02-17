@@ -6,7 +6,7 @@
 #    By: fde-sist <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/06 16:51:14 by fde-sist          #+#    #+#              #
-#    Updated: 2024/02/15 13:45:55 by fde-sist         ###   ########.fr        #
+#    Updated: 2024/02/17 18:23:49 by fde-sist         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,17 @@ SRC_FILES = ft_isalpha.c \
 			ft_memmove.c \
 			ft_strlcpy.c \
 			ft_strlcat.c \
-
+			ft_toupper.c \
+			ft_tolower.c \
+			ft_strchr.c \
+			ft_strrchr.c \
+			ft_strncmp.c \
+			ft_memchr.c \
+			ft_memcmp.c \
+			ft_strnstr.c \
+			ft_atoi.c \
+			ft_calloc.c \
+			
 # Costruzione della lista di oggetti
 OBJ_FILES = $(SRC_FILES:.c=.o)
 

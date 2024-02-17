@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-sist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/15 13:33:35 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/02/16 16:16:34 by fde-sist         ###   ########.fr       */
+/*   Created: 2024/02/16 16:04:17 by fde-sist          #+#    #+#             */
+/*   Updated: 2024/02/16 16:22:33 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+char	*ft_strrchr(const char *s, int c)
 {
-	size_t	i;
-	size_t	j;
+	char	*last_found;
 
-	i = 0;
-	j = 0;
-	while (dst[i] && i < size)
-		i++;
-	while (src[j] && i + j + 1 < size)
+	last_found = NULL;
+	while (*s)
 	{
-		dst[i + j] = src[j];
-		j++;
+		if (*s == (char) c)
+			last_found = (char *)s;
+		s++;
 	}
-	if (i != size)
-		dst[i + j] = 0;
-	return (i + ft_strlen(src));
+	if (*s == (char) c)
+		last_found = (char *)s;
+	return (last_found);
 }

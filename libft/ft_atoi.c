@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-sist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/15 13:33:35 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/02/16 16:16:34 by fde-sist         ###   ########.fr       */
+/*   Created: 2024/02/17 18:08:07 by fde-sist          #+#    #+#             */
+/*   Updated: 2024/02/17 18:19:22 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+int	ft_atoi(const char *nptr)
 {
-	size_t	i;
-	size_t	j;
+	int	i;
+	int	sign;
 
 	i = 0;
-	j = 0;
-	while (dst[i] && i < size)
-		i++;
-	while (src[j] && i + j + 1 < size)
+	sign = 1;
+	while ((*nptr >= 9 && *nptr <= 13) || *nptr == ' ')
+		nptr++;
+	if (*nptr == '-' || *nptr == '+')
 	{
-		dst[i + j] = src[j];
-		j++;
+		if (*nptr == '-')
+			sign *= -1;
+		nptr++;
 	}
-	if (i != size)
-		dst[i + j] = 0;
-	return (i + ft_strlen(src));
+	while(*nptr >= '0' && *nptr <= '9')
+	{
+		i *= 10;
+		i += *nptr - '0';
+		nptr++;
+	}
+	return (sign * i);
 }
