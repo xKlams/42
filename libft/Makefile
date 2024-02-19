@@ -6,7 +6,7 @@
 #    By: fde-sist <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/06 16:51:14 by fde-sist          #+#    #+#              #
-#    Updated: 2024/02/19 15:04:51 by fde-sist         ###   ########.fr        #
+#    Updated: 2024/02/19 23:05:00 by fde-sist         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,9 +45,21 @@ SRC_FILES = ft_isalpha.c \
 			ft_strjoin.c \
 			ft_strtrim.c \
 			ft_split.c \
+			ft_itoa.c \
+			ft_strmapi.c \
+			ft_striteri.c \
+			ft_putchar_fd.c \
+			ft_putstr_fd.c \
+			ft_putendl_fd.c \
+			ft_putnbr_fd.c \
 			
+SRC_FILES_BONUS = ft_lstnew.c \
+			ft_lstadd_front.c \
+			ft_lstsize.c \
+			ft_lstlast.c \
 # Costruzione della lista di oggetti
 OBJ_FILES = $(SRC_FILES:.c=.o)
+OBJ_FILES_BONUS = $(SRC_FILES_BONUS:.c=.o)
 
 # Regole
 all: $(NAME)
@@ -55,11 +67,14 @@ all: $(NAME)
 $(NAME): $(OBJ_FILES)
 	ar rcs $(NAME) $(OBJ_FILES)
 
+bonus: $(OBJ_FILES_BONUS)
+	ar rcs $(NAME) $(OBJ_FILES_BONUS)
+
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ_FILES)
+	rm -f $(OBJ_FILES) $(OBJ_FILES_BONUS)
 
 fclean: clean
 	rm -f $(NAME)

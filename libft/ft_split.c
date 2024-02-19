@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-sist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/19 12:17:39 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/02/19 16:33:45 by fde-sist         ###   ########.fr       */
+/*   Created: 2024/02/19 18:03:01 by fde-sist          #+#    #+#             */
+/*   Updated: 2024/02/19 18:54:58 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ size_t	count_words(const char *s, char c)
 			s++;
 			change = 1;
 		}
-		if(!*s)
-			return(i + 1);
+		if (!*s)
+			return (i + 1);
 		if (change)
 			i++;
 		change = 0;
@@ -36,60 +36,57 @@ size_t	count_words(const char *s, char c)
 	return (i + 1);
 }
 
-size_t	until_new_char(const char *s1, char c)
+size_t	pointer_dist(char const *from, char const *to)
 {
 	size_t	i;
 
-	i = 1;
-	while (*s1 != c)
-	{
-		if (!*s1)
-			return (i);
+	i = 0;
+	while (from + i != to)
 		i++;
-		s1++;
-	}
 	return (i);
 }
-// #include <stdio.h>
-char	**ft_split(char const *s, char c)
-{
-	char		**list;
-	int			i;
 
-	while(*s == c && *s)
-		s++;
-	i = 0;
-	list = (char **)malloc((count_words(s, c) + 1)*sizeof(char *));
-	if(!list)
-	return (NULL);
+void	ft_aux(char *start, char **list, char c, const char *s)
+{
 	while (*s == c)
 		s++;
-	if (!(*s))
-	{
-		*list = NULL;
-		return (list);
-	}
 	while (*s)
 	{
-		list[i] = ft_substr(s, 0, until_new_char(s, c) - 1);
-		i++;
-		// printf("new element added %s at index i = %d\n", list[i-1], i -1);
-		s += until_new_char(s,c);
+		start = (char *)s;
+		while (*s != c && *s)
+			s++;
+		*list = ft_substr(start, 0, pointer_dist(start, s));
+		list++;
 		while (*s == c && *s)
 			s++;
 	}
-	list[i] = NULL;
-	// printf("i = %d\n", i);
-	// 	printf("new element added %s at index i = %d\n", list[i], i);
-	// 	printf("%s\n", list[12]);
-	return (list);
+	*list = NULL;
 }
-int main()
-{
-	char **test = ft_split("lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse", ' ');
-	for(int i = 0 ; i < count_words("lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse", ' ' ) + 1; i++)
-		{
-			printf("%s\n", test[i] );
-	}// printf("%s\n", test[2]);
 
+char	**ft_split(char const *s, char c)
+{
+	char	**list;
+	char	*start;
+	char	**list_start;
+
+	start = (char *)s;
+	while (*(s) == c && *s)
+		s++;
+	if (*s == 0)
+	{
+		list = (char **)malloc(sizeof(char *));
+		if (!list)
+			return (NULL);
+		*list = NULL;
+		return (list);
+	}
+	s = start;
+	list = (char **)malloc((count_words(s, c) + 1) * sizeof(char *));
+	if (!list)
+		return (NULL);
+	list_start = list;
+	while (*s == c)
+		s++;
+	ft_aux(start, list, c, s);
+	return (list_start);
 }
