@@ -6,12 +6,11 @@
 /*   By: fde-sist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 12:17:39 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/02/19 14:43:56 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:33:45 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 size_t	count_words(const char *s, char c)
 {
@@ -52,7 +51,6 @@ size_t	until_new_char(const char *s1, char c)
 	return (i);
 }
 // #include <stdio.h>
-
 char	**ft_split(char const *s, char c)
 {
 	char		**list;
@@ -62,7 +60,6 @@ char	**ft_split(char const *s, char c)
 		s++;
 	i = 0;
 	list = (char **)malloc((count_words(s, c) + 1)*sizeof(char *));
-	// printf("words = %d\n", count_words(s, c));
 	if(!list)
 	return (NULL);
 	while (*s == c)
@@ -75,20 +72,24 @@ char	**ft_split(char const *s, char c)
 	while (*s)
 	{
 		list[i] = ft_substr(s, 0, until_new_char(s, c) - 1);
-		if(!list)
-			return (NULL);
 		i++;
+		// printf("new element added %s at index i = %d\n", list[i-1], i -1);
 		s += until_new_char(s,c);
 		while (*s == c && *s)
 			s++;
 	}
 	list[i] = NULL;
+	// printf("i = %d\n", i);
+	// 	printf("new element added %s at index i = %d\n", list[i], i);
+	// 	printf("%s\n", list[12]);
 	return (list);
 }
+int main()
+{
+	char **test = ft_split("lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse", ' ');
+	for(int i = 0 ; i < count_words("lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse", ' ' ) + 1; i++)
+		{
+			printf("%s\n", test[i] );
+	}// printf("%s\n", test[2]);
 
-// int main()
-// {
-// 	for(int i = 0 ; i < 1; i++)
-// 	printf("%s\n", ft_split("hello!", ' ')[i]);
-
-// }
+}

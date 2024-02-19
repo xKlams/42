@@ -6,7 +6,7 @@
 /*   By: fde-sist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 17:31:07 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/02/17 18:39:59 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:24:21 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 
 	i = 0;
 	j = 0;
-	if (!len && !(*little))
+	if ((!len && !big) || !(*little))
 		return ((char *)big);
 	while (big[i] && i < len)
 	{
