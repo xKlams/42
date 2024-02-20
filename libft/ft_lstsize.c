@@ -6,7 +6,7 @@
 /*   By: fde-sist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 22:59:51 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/02/19 23:02:25 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:30:44 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_lstsize(t_list *lst)
 	int	size;
 
 	size = 0;
-	while(lst)
+	while (lst)
 	{
 		size++;
 		lst = lst->next;

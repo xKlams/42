@@ -6,7 +6,7 @@
 /*   By: fde-sist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 10:55:14 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/02/20 11:22:49 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:30:02 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	while (lst)
 	{
 		new_list->next = ft_lstnew((*f)(lst->content));
-		if(!new_list)
+		if (!new_list)
 		{
 			ft_lstclear(&new_list, del);
 			return (NULL);
