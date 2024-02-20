@@ -6,7 +6,7 @@
 /*   By: fde-sist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 18:03:01 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/02/19 18:54:58 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/02/20 18:48:44 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,20 @@
 size_t	count_words(const char *s, char c)
 {
 	size_t	i;
-	size_t	change;
 
 	i = 0;
-	change = 0;
 	while (*s)
 	{
-		while (*s == c && *s)
-		{
+		while (*s == c)
 			s++;
-			change = 1;
-		}
-		if (!*s)
-			return (i + 1);
-		if (change)
+		if (*s)
+		{
 			i++;
-		change = 0;
-		s++;
+			while (*s != c && *s)
+				s++;
+		}
 	}
-	return (i + 1);
+	return (i);
 }
 
 size_t	pointer_dist(char const *from, char const *to)
@@ -56,6 +51,8 @@ void	ft_aux(char *start, char **list, char c, const char *s)
 		while (*s != c && *s)
 			s++;
 		*list = ft_substr(start, 0, pointer_dist(start, s));
+		if (!(*list))
+			free(*list);
 		list++;
 		while (*s == c && *s)
 			s++;
@@ -69,6 +66,8 @@ char	**ft_split(char const *s, char c)
 	char	*start;
 	char	**list_start;
 
+	if (!s)
+		return (NULL);
 	start = (char *)s;
 	while (*(s) == c && *s)
 		s++;
@@ -85,8 +84,6 @@ char	**ft_split(char const *s, char c)
 	if (!list)
 		return (NULL);
 	list_start = list;
-	while (*s == c)
-		s++;
 	ft_aux(start, list, c, s);
 	return (list_start);
 }

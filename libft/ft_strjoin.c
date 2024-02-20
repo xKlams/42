@@ -6,7 +6,7 @@
 /*   By: fde-sist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 18:37:22 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/02/19 12:22:56 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/02/20 18:50:05 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,19 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int		index;
+	char	*start;
 	char	*joined;
-	int		len_s2;
-	int		len_s1;
+	size_t	len;
 
-	index = 0;
-	if (!s1 && !s2)
+	if (!s1 || !s2)
 		return (NULL);
-	len_s2 = ft_strlen(s2);
-	len_s1 = ft_strlen(s1);
-	joined = (char *) malloc(len_s1 + len_s2 + 1);
+	len = ft_strlen(s1) + ft_strlen(s2) + 1;
+	joined = (char *) malloc((len) * sizeof(char));
+	start = joined;
 	if (!joined)
 		return (NULL);
-	while (s1[index])
-	{
-		joined[index] = s1[index];
-		index++;
-	}
-	while (s2[index - len_s1])
-	{
-		joined[index] = s2[index - len_s1];
-		index++;
-	}
-	joined[index] = 0;
-	return (joined);
+	ft_strlcpy(joined, s1, ft_strlen(s1) + 1);
+	joined += ft_strlen(s1);
+	ft_strlcpy(joined, s2, ft_strlen(s2) + 1);
+	return (start);
 }

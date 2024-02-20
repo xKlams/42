@@ -6,7 +6,7 @@
 /*   By: fde-sist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 10:32:18 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/02/20 11:29:26 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/02/20 17:55:41 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
+	if (!lst || !del)
+		return ;
 	(*del)(lst->content);
 	free(lst);
 }

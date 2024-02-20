@@ -6,37 +6,40 @@
 /*   By: fde-sist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 18:13:56 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/02/19 12:22:03 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/02/20 18:51:36 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+void	ft_subs_aux(char *s, size_t *i, char const *ss, unsigned int start)
+{
+	s[*i] = ss[*i + start];
+	(*i)++;
+}
+
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char			*subsring;
-	unsigned int	index;
-	size_t			s_len;
+	char		*substring;
+	size_t		index;
 
 	index = 0;
-	s_len = ft_strlen(s);
-	if (start > s_len)
-	{
-		subsring = malloc(1);
-		subsring[0] = 0;
-		return (subsring);
-	}
-	if (s_len - start < len)
-		subsring = (char *)malloc(s_len - start + 1);
-	else
-		subsring = (char *)malloc(len + 1);
-	if (!subsring)
+	if (!s)
 		return (NULL);
-	while (index < (unsigned int) len && index + start <= s_len)
+	if (start >= ft_strlen(s))
 	{
-		subsring[index] = s[index + start];
-		index++;
+		substring = (char *)malloc(sizeof(char));
+		*substring = '\0';
+		return (substring);
 	}
-	subsring[index] = '\0';
-	return (subsring);
+	if (ft_strlen(s) - start <= len)
+		substring = (char *)malloc((ft_strlen(s) - start + 1) * sizeof(char));
+	else
+		substring = (char *)malloc((len + 1) * sizeof(char));
+	if (!substring || !s)
+		return (NULL);
+	while (index < len && index + start < ft_strlen(s) && s[index + start])
+		ft_subs_aux(substring, &index, s, start);
+	substring[index] = '\0';
+	return (substring);
 }

@@ -6,7 +6,7 @@
 /*   By: fde-sist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 16:51:10 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/02/20 11:05:07 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/02/20 18:52:05 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef struct	s_list
+typedef struct s_list
 {
-	void 		*content;
+	void			*content;
 	struct s_list	*next;
 }	t_list;
 

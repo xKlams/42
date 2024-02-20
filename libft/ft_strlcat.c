@@ -6,7 +6,7 @@
 /*   By: fde-sist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 13:33:35 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/02/16 16:16:34 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/02/20 17:04:55 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 
 	i = 0;
 	j = 0;
+	if (!size)
+		return (ft_strlen(src));
 	while (dst[i] && i < size)
 		i++;
 	while (src[j] && i + j + 1 < size)
