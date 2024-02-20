@@ -6,7 +6,7 @@
 /*   By: fde-sist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 18:03:01 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/02/20 18:48:44 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/02/20 22:16:59 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ size_t	pointer_dist(char const *from, char const *to)
 	return (i);
 }
 
-void	ft_aux(char *start, char **list, char c, const char *s)
+int	set_list(char *start, char **list, char c, const char *s)
 {
 	while (*s == c)
 		s++;
@@ -52,12 +52,33 @@ void	ft_aux(char *start, char **list, char c, const char *s)
 			s++;
 		*list = ft_substr(start, 0, pointer_dist(start, s));
 		if (!(*list))
-			free(*list);
+			return (1);
 		list++;
 		while (*s == c && *s)
 			s++;
 	}
 	*list = NULL;
+	return (0);
+}
+
+int	free_list(char *start, char **list, char c, const char *s)
+{
+	size_t	i;
+	size_t	words;
+
+	words = count_words(s, c);
+	i = 0;
+	if (set_list(start, list, c, s))
+	{
+		while (i < words)
+		{
+			free(list[i]);
+			i++;
+		}
+		free(list);
+		return (1);
+	}
+	return (0);
 }
 
 char	**ft_split(char const *s, char c)
@@ -84,6 +105,7 @@ char	**ft_split(char const *s, char c)
 	if (!list)
 		return (NULL);
 	list_start = list;
-	ft_aux(start, list, c, s);
+	if (free_list(start, list, c, s))
+		return (NULL);
 	return (list_start);
 }

@@ -6,7 +6,7 @@
 /*   By: fde-sist <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 18:13:56 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/02/20 18:51:36 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/02/20 21:42:08 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (start >= ft_strlen(s))
 	{
 		substring = (char *)malloc(sizeof(char));
+		if (!substring)
+			return (NULL);
 		*substring = '\0';
 		return (substring);
 	}
