@@ -6,7 +6,7 @@
 #    By: fde-sist <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/06 16:51:14 by fde-sist          #+#    #+#              #
-#    Updated: 2024/02/19 23:05:00 by fde-sist         ###   ########.fr        #
+#    Updated: 2024/02/20 11:05:13 by fde-sist         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,11 @@ SRC_FILES_BONUS = ft_lstnew.c \
 			ft_lstadd_front.c \
 			ft_lstsize.c \
 			ft_lstlast.c \
+			ft_lstadd_back.c \
+			ft_lstdelone.c \
+			ft_lstclear.c \
+			ft_lstiter.c \
+			ft_lstmap.c \
 # Costruzione della lista di oggetti
 OBJ_FILES = $(SRC_FILES:.c=.o)
 OBJ_FILES_BONUS = $(SRC_FILES_BONUS:.c=.o)
