@@ -6,12 +6,12 @@
 #    By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/22 10:53:01 by fde-sist          #+#    #+#              #
-#    Updated: 2024/02/22 10:53:56 by fde-sist         ###   ########.fr        #
+#    Updated: 2024/02/22 12:28:41 by fde-sist         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Nome del progetto
-NAME = ft_printf.a
+NAME = printf.a
 
 # Compilatore e opzioni
 CC = gcc
@@ -35,7 +35,7 @@ $(NAME): $(OBJ_FILES)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ_FILES) $(OBJ_FILES_BONUS)
+	rm -f $(OBJ_FILES)
 
 fclean: clean
 	rm -f $(NAME)
