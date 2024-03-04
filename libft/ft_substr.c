@@ -3,20 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fde-sist <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fde-sist@student.42roma.it <fde-sist>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 18:13:56 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/02/20 21:42:08 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/02/23 12:37:32 by fde-sist@st      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-void	ft_subs_aux(char *s, size_t *i, char const *ss, unsigned int start)
-{
-	s[*i] = ss[*i + start];
-	(*i)++;
-}
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -29,8 +23,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (start >= ft_strlen(s))
 	{
 		substring = (char *)malloc(sizeof(char));
-		if (!substring)
-			return (NULL);
 		*substring = '\0';
 		return (substring);
 	}
@@ -41,7 +33,10 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!substring || !s)
 		return (NULL);
 	while (index < len && index + start < ft_strlen(s) && s[index + start])
-		ft_subs_aux(substring, &index, s, start);
+	{
+		substring[i] = s[i + start];
+		i++;
+	}
 	substring[index] = '\0';
 	return (substring);
 }
