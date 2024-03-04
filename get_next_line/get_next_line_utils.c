@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:41:39 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/03/04 14:39:08 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:14:47 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,18 @@ char	*ft_strjoin_until(char *s1, char *s2, int until)
 		return (NULL);
 	ft_strlcpy(joined, s1, ft_strlen(s1) + 1);
 	ft_strlcpy(joined + ft_strlen(s1), s2, until + 1);
-    free(s1);
+	free(s1);
 	return (joined);
 }
 
 int	ft_strchr(const char *s, int c)
 {
-	int i;
+	int	i;
 
 	i = 0;
-    if (!s)
+	if (!s)
 	{
-    	return (-1);
+		return (-1);
 	}
 	while (s[i])
 	{
@@ -76,7 +76,6 @@ char	*ft_strdup(const char *s)
 	return (start);
 }
 
-
 size_t	ft_strlcpy(char	*dst, const char *src, size_t size)
 {
 	size_t	copied_chars;
@@ -93,4 +92,3 @@ size_t	ft_strlcpy(char	*dst, const char *src, size_t size)
 		dst[copied_chars] = 0;
 	return (ft_strlen(src));
 }
-
