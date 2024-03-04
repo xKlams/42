@@ -6,14 +6,13 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:18:03 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/03/04 15:14:10 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/03/04 15:27:21 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
-char	*fill_with_leftover(char leftover[BUFFER_SIZE + 1])
+char	*fill_with_leftover(char leftover[])
 {
 	char	*out;
 	char	*temp;
@@ -40,7 +39,7 @@ char	*fill_with_leftover(char leftover[BUFFER_SIZE + 1])
 	return (out);
 }
 
-char	*ft_aux(char leftover[BUFFER_SIZE + 1], char *line, int br, int fd)
+char	*ft_aux(char leftover[], char *line, int br, int fd)
 {
 	char	*temp;
 	int		nl_index;
