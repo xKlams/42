@@ -1,5 +1,6 @@
 #include "get_next_line.h"
 #include <stdio.h>
+#include <limits.h>
 
 int main()
 {
@@ -9,6 +10,7 @@ int main()
     //     printf("funziona ancora\n");
     int fd = open("./test.txt", O_RDONLY);
     // char *line;
+    // printf("%d\n", OPEN_MAX);
     // line = get_next_line(fd);
     // printf("%s", line);
     // free(line);
