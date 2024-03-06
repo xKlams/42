@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 14:41:45 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/03/04 15:48:38 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/03/06 15:52:10 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-
-
 
 char	*get_next_line(int fd);
 char	*fill_with_leftover(char leftover[]);
