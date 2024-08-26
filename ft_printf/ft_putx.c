@@ -52,5 +52,5 @@ int	ft_put_hex_aux(unsigned long int number, const char *base)
 {
 	if (!number)
 		return (0);
-	return (ft_put_hex_aux(number / 16, base) + ft_putchar(base[number % 16]));
+	return (ft_put_hex_aux(number / ft_strlen(base), base) + ft_putchar(base[number % ft_strlen(base)]));
 }

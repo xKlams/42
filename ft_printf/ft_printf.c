@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 09:27:37 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/02/22 12:32:03 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/07/27 13:55:00 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	ft_print_argument(const char string, va_list arguments)
 		return (ft_putchar('%'));
 	return (0);
 }
+
 
 int	ft_printf(const char *string, ...)
 {
