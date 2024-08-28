@@ -6,26 +6,27 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 13:51:28 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/08/26 17:51:52 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/08/29 01:46:51 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "headers/fractol.h"
-#include <stdio.h>
 
 int	main(int argc, char **argv)
 {
 	t_mlx_win		vars;
-	unsigned char	option_choosen;
-	t_data			img;
-	t_info			info;
+	int				fractal_choice;
 
-	info.fractal = 0;
-	info.scale = 1;
-	info.x_shift = 0;
-	info.y_shift = 0;
-	option_choosen = arg_check(argc, argv);
 	init(&vars);
-	gen_fractal(&vars, info.fractal, info);
+	fractal_choice = arg_check(argc, argv);
+	if (fractal_choice == 2)
+	{
+		info_handler((float [3]){0, 0, 0},
+			fractal_choice, (float [2]){ft_atof(argv[2]),
+			ft_atof(argv[3])}, &vars);
+	}
+	else
+		info_handler((float [3]){0, 0, 0},
+			fractal_choice, (float [2]){0, 0}, &vars);
 	mlx_loop(vars.mlx);
 }

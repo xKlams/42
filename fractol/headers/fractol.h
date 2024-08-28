@@ -41,26 +41,29 @@ typedef struct s_complex
 
 typedef struct s_info
 {
-	float	x_shift;
-	float	y_shift;
-	float	scale;
-	int		fractal;
+	float		x_shift;
+	float		y_shift;
+	float		scale;
+	int			fractal;
+	t_complex	c;
 }				t_info;
 
+void	change_image_color(t_data *img, int cos[2], t_info i);
+void	j(t_complex *crd, t_info i, int cos[2], t_data *img);
+void	m(t_complex *crd, int cos[2], t_complex r, t_data *img);
+void	gen_fractal(t_mlx_win *vars, t_info info);
+float	norm(float x, float y);
+int		int_max(int a, int b);
+float	ft_atof(const char *nptr);
+int		mouse_handler(int keycode, int x, int y, t_mlx_win *vars);
+void	hooks(t_mlx_win *vars);
+void	init(t_mlx_win *vars);
+int		option(char **argv, int argc);
+int		arg_check(int argc, char **argv);
 void	change_pixel(t_data *data, int x, int y, int color);
 int		destroy(t_mlx_win *vars);
 int		key_press_handler(int keycode, t_mlx_win *vars);
 void	change_position(char *direction, t_mlx_win *vars);
-void	info_handler(float scale, float x_shift, float y_shift, t_mlx_win *vars);
-int		mouse_handler(int keycode, int x, int y, t_mlx_win *vars);
-void	hooks(t_mlx_win *vars);
-void	init(t_mlx_win *vars);
-int		option(char **argv);
-int		arg_check(int argc, char **argv);
-void	change_image_color(t_data *img, int cos[2], t_info i);
-void	m(t_complex *crd, int cos[2], t_complex r, t_data *img);
-float	square(float num);
-float	norm(float x, float y);
-void	gen_fractal(t_mlx_win *vars, int choice, t_info info);
+void	info_handler(float params[3], int frac, float c[2], t_mlx_win *vars);
 
 #endif

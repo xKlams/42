@@ -6,35 +6,60 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 12:14:30 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/08/26 17:51:25 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/08/29 01:48:22 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "headers/fractol.h"
-#include <stdio.h>
 
 void	change_image_color(t_data *img, int cos[2], t_info i)
 {
-	int				iter;
 	t_complex		crd;
-	float			x_aux;
 	t_complex		r;
+	int				coeff;
 
+	coeff = int_max(S_HEIGHT, S_WIDTH);
 	crd.real = -S_WIDTH / 2;
 	crd.imag = -S_HEIGHT / 2;
-	r.real = crd.real / (S_WIDTH / 2) * 1.235 * i.scale - 2 + i.x_shift;
+	r.real = crd.real / (coeff / 2) * 1.235 * i.scale - 2 + i.x_shift;
 	while (crd.real < S_WIDTH / 2)
 	{
 		crd.imag = -S_HEIGHT / 2;
-		r.imag = crd.imag / (S_HEIGHT / 2) * i.scale * 1.12 + i.y_shift;
+		r.imag = crd.imag / (coeff / 2) * i.scale * 1.12 + i.y_shift;
 		while (crd.imag < S_HEIGHT / 2)
 		{
-			m(&crd, cos, r, img);
-			r.imag = crd.imag / (S_HEIGHT / 2) * 1.12 * i.scale + i.y_shift;
+			if (i.fractal == 1)
+				m(&crd, cos, r, img);
+			else
+				j(&crd, i, cos, img);
+			r.imag = crd.imag / (coeff / 2) * 1.12 * i.scale + i.y_shift;
 		}
 		crd.real++;
-		r.real = crd.real / (S_WIDTH / 2) * 1.235 * i.scale - 2 + i.x_shift ;
+		r.real = crd.real / (coeff / 2) * 1.235 * i.scale - 2 + i.x_shift ;
 	}
+}
+
+void	j(t_complex *crd, t_info i, int cos[2], t_data *img)
+{
+	int			iter;
+	float		x_aux;
+	t_complex	num;
+	int			coeff;
+
+	coeff = int_max(S_HEIGHT, S_WIDTH);
+	iter = 0;
+	num.real = crd->real / (coeff / 2) * 1.235 * i.scale - 2 + i.x_shift;
+	num.imag = crd->imag / (coeff / 2) * 1.12 * i.scale + i.y_shift;
+	while (iter < cos[1] && norm(num.real, num.imag) < cos[0])
+	{
+		x_aux = pow(num.real, 2) - pow(num.imag, 2) + i.c.real;
+		num.imag = num.imag * num.real * 2 + i.c.imag;
+		num.real = x_aux;
+		iter++;
+	}
+	change_pixel(img, crd->real + S_WIDTH / 2,
+		crd->imag + S_HEIGHT / 2, ((float) iter / cos[1] * 0x00FFFFFF));
+	crd->imag++;
 }
 
 void	m(t_complex *crd, int cos[2], t_complex r, t_data *img)
@@ -48,7 +73,7 @@ void	m(t_complex *crd, int cos[2], t_complex r, t_data *img)
 	iter = 0;
 	while (iter < cos[1] && norm(c.real, c.imag) <= cos[0])
 	{
-		x_aux = square(c.real) - square(c.imag) + r.real;
+		x_aux = pow(c.real, 2) - pow(c.imag, 2) + r.real;
 		c.imag = c.imag * c.real * 2 + r.imag;
 		c.real = x_aux;
 		iter++;
@@ -57,19 +82,8 @@ void	m(t_complex *crd, int cos[2], t_complex r, t_data *img)
 		crd->imag + S_HEIGHT / 2, ((float) iter / cos[1] * 0x00FFFFFF));
 	crd->imag++;
 }
-//z^2 + c = (x^2 - y^2 + x') + i(2xy + y')
 
-float	square(float num)
-{
-	return (num * num);
-}
-
-float	norm(float x, float y)
-{
-	return (x * x + y * y);
-}
-
-void	gen_fractal(t_mlx_win *vars, int choice, t_info info)
+void	gen_fractal(t_mlx_win *vars, t_info info)
 {
 	t_data	img;
 	int		costraint[2];

@@ -1,12 +1,12 @@
 NAME = fractol
 CC = gcc
-CFLAGS =  -Werror -g
+CFLAGS =  -Werror -Wall -Wextra -g
 
 INCLUDES = -I ./mlx
 LIBS = -L ./mlx ./mlx/libmlx.a -lXext -lX11 -lm
 
 SRC = main.c \
-			mlx_utils.c libft_functions/ft_strncmp.c generate_fractal.c
+			mlx_utils_1.c mlx_utils_2.c libft_functions/ft_strncmp.c generate_fractal.c math_utils.c
 
 OBJ = $(SRC:.c=.o)
 
