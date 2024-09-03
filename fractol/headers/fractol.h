@@ -1,16 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractol.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/03 11:32:25 by fde-sist          #+#    #+#             */
+/*   Updated: 2024/09/03 16:30:59 by fde-sist         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# ifndef S_WIDTH
-#  define S_WIDTH 1080
-# endif
-# ifndef S_HEIGHT
-#  define S_HEIGHT 720
-# endif
-# ifndef ARROW_SENSITIVITY
-#  define ARROW_SENSITIVITY 0.5
-# endif
+# define S_WIDTH 1080
+# define S_HEIGHT 720
+# define ESC_ITER 100
+# define ESC_NORM 100
+# define ARROW_SPEED 0.5
+# define STD_COLOR 0x00FFFFFF
 
 # include <mlx.h>
 # include <stdlib.h>
@@ -35,8 +43,8 @@ typedef struct s_mlx_win
 
 typedef struct s_complex
 {
-	float	real;
-	float	imag;
+	double	real;
+	double	imag;
 }				t_complex;
 
 typedef struct s_info
@@ -48,10 +56,10 @@ typedef struct s_info
 	t_complex	c;
 }				t_info;
 
-void	change_image_color(t_data *img, int cos[2], t_info i);
-void	j(t_complex *crd, t_info i, int cos[2], t_data *img);
-void	m(t_complex *crd, int cos[2], t_complex r, t_data *img);
-void	gen_fractal(t_mlx_win *vars, t_info info);
+void	change_image_color(t_data *img, t_info i);
+void	julia(t_complex *crd, t_info i, t_data *img, int color);
+void	mandelbrot(t_complex *crd, t_complex r, t_data *img, int color);
+void	gen_fractal(t_mlx_win *vars, t_info info, int color);
 float	norm(float x, float y);
 int		int_max(int a, int b);
 float	ft_atof(const char *nptr);
@@ -64,6 +72,6 @@ void	change_pixel(t_data *data, int x, int y, int color);
 int		destroy(t_mlx_win *vars);
 int		key_press_handler(int keycode, t_mlx_win *vars);
 void	change_position(char *direction, t_mlx_win *vars);
-void	info_handler(float params[3], int frac, float c[2], t_mlx_win *vars);
+void	info_handler(float params[3], int f_color, float setup[3], t_mlx_win *vars);
 
 #endif

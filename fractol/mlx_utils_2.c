@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 01:06:19 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/08/29 01:55:14 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/09/03 16:35:00 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int	mouse_handler(int keycode, int x, int y, t_mlx_win *vars)
 {
 	if (keycode == 5)
-		info_handler((float [3]){0, 0, 0.5}, 0, (float [2]){0, 0}, vars);
+		info_handler((float [3]){0, 0, 1.5}, 0, (float [3]){0, 0, 0}, vars);
 	if (keycode == 4)
-		info_handler((float [3]){0, 0, 1.5}, 0, (float [2]){0, 0}, vars);
+		info_handler((float [3]){0, 0, 0.5}, 0, (float [3]){0, 0, 0}, vars);
 	return (x + y);
 }
 
@@ -61,6 +61,7 @@ int	option(char **argv, int argc)
 	}
 	return (0);
 }
+
 //check if secure
 int	arg_check(int argc, char **argv)
 {
