@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 01:06:19 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/09/03 16:35:00 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/09/10 15:55:50 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int	mouse_handler(int keycode, int x, int y, t_mlx_win *vars)
 {
 	if (keycode == 5)
-		info_handler((float [3]){0, 0, 1.5}, 0, (float [3]){0, 0, 0}, vars);
+		i_handler((float [3]){x, y, 1.5}, 0, (float [3]){0, 0, 0}, vars);
 	if (keycode == 4)
-		info_handler((float [3]){0, 0, 0.5}, 0, (float [3]){0, 0, 0}, vars);
+		i_handler((float [3]){x, y, 0.5}, 0, (float [3]){0, 0, 0}, vars);
 	return (x + y);
 }
 
@@ -37,41 +37,40 @@ void	init(t_mlx_win *vars)
 
 int	option(char **argv, int argc)
 {
-	if (!ft_strncmp(argv[1], "Mandelbrot", 11))
+	int	len;
+
+	if (!ft_strncmp(argv[1], "Mandelbrot", 11)
+		|| !ft_strncmp(argv[1], "Burning", 8))
 	{
+		if (!ft_strncmp(argv[1], "Mandelbrot", 11))
+			len = 11;
+		else
+			len = 8;
 		if (argc != 2)
 		{
 			write(1, "Too many parameters!\n", 21);
-			write(1, "If you want to generate Mandelbro", 33);
-			write(1, "t don't pass any other parameter\n", 33);
+			write(1, "If you want to generate ", 25);
+			write(1, argv[1], len);
+			write(1, " don't pass any other parameter\n", 33);
 			exit(1);
 		}
-		return (1);
+		return ('m' * (len == 11) + 'b' * (len == 8));
 	}
 	if (!ft_strncmp(argv[1], "Julia", 6))
 	{
-		if (argc != 4)
-		{
-			write(1, "Not enough parameters provided\n", 31);
-			write(1, "Provide the program with real and ", 34);
-			write(1, "imaginary part of constant parameter\n", 37);
-			exit(1);
-		}
-		return (2);
+		julia_output(argc);
+		return ('j');
 	}
 	return (0);
 }
 
-//check if secure
-int	arg_check(int argc, char **argv)
+void	julia_output(int argc)
 {
-	if (argc < 2 || !option(argv, argc))
+	if (argc != 4)
 	{
 		write(1, "Not enough parameters provided\n", 31);
-		write(1, "Use argument \"Julia\" to generate Julia's set\n", 45);
-		write(1, "Use argument \"Mandelbrot\"", 25);
-		write(1, " to generate Mandelbrot set\n", 28);
+		write(1, "Provide the program with real and ", 34);
+		write(1, "imaginary part of constant parameter\n", 37);
 		exit(1);
 	}
-	return (option(argv, argc));
 }

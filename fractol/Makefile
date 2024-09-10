@@ -6,7 +6,8 @@ INCLUDES = -I ./mlx
 LIBS = -L ./mlx ./mlx/libmlx.a -lXext -lX11 -lm
 
 SRC = main.c \
-			mlx_utils_1.c mlx_utils_2.c libft_functions/ft_strncmp.c generate_fractal.c math_utils.c
+			mlx_utils_1.c mlx_utils_2.c mlx_utils_3.c \
+			libft_functions/ft_strncmp.c generate_fractal.c math_utils.c
 
 OBJ = $(SRC:.c=.o)
 

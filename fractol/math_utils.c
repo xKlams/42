@@ -6,13 +6,13 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 01:01:08 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/08/29 01:54:06 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/09/10 15:48:11 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "headers/fractol.h"
 
-float	norm(float x, float y)
+double	norm(float x, float y)
 {
 	return (x * x + y * y);
 }
@@ -25,7 +25,11 @@ int	int_max(int a, int b)
 		return (b);
 }
 
-//Check edge cases
+double	d_abs(double a)
+{
+	return (a * (a >= 0) - a * (a < 0));
+}
+
 float	ft_atof(const char *nptr)
 {
 	double	i;
@@ -45,11 +49,12 @@ float	ft_atof(const char *nptr)
 	while ((*nptr >= '0' && *nptr <= '9') || *nptr == '.')
 	{
 		if (*nptr == '.')
-			dot = (char *)nptr;
+			dot = (char *)(nptr++);
 		else
-			i = i * 10 + *nptr - '0';
-		nptr++;
+			i = i * 10 + *(nptr++) - '0';
 	}
 	nptr--;
-	return ((float)(sign * i / pow(10, (nptr - dot))));
+	if (dot)
+		return ((float)(sign * i / pow(10, (nptr - dot))));
+	return ((float)(sign * i));
 }

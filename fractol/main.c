@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 13:51:28 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/09/03 16:39:11 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/09/10 15:53:38 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ int	main(int argc, char **argv)
 
 	fractal_choice = arg_check(argc, argv);
 	init(&vars);
-	if (fractal_choice == 2)
+	if (fractal_choice == 'j')
 	{
-		info_handler((float [3]){0, 0, 0},
+		i_handler((float [3]){0, 0, 0},
 			0, (float [3]){ft_atof(argv[2]),
 			ft_atof(argv[3]), (float) fractal_choice}, &vars);
 	}
 	else
-		info_handler((float [3]){0, 0, 0},
+		i_handler((float [3]){0, 0, 0},
 			0, (float [3]){0, 0, (float) fractal_choice}, &vars);
 	mlx_loop(vars.mlx);
 }
