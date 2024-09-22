@@ -6,12 +6,11 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 18:43:05 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/09/23 00:08:37 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/09/23 00:13:00 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
 
 int	main(int argc, char **argv, char **envp)
 {

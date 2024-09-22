@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 10:38:15 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/09/23 00:08:40 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/09/23 00:12:49 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ int	set_fd(int files[2], char **params)
 	return (1);
 }
 
-
 int	ft_pipe(char **params, char **envp)
 {
 	int		files[2];
@@ -75,7 +74,6 @@ int	ft_pipe(char **params, char **envp)
 		return (0);
 	pipe(pipefd);
 	pid = fork();
-
 	if (!pid)
 		child(pipefd, files, envp, params);
 	else
@@ -83,7 +81,6 @@ int	ft_pipe(char **params, char **envp)
 	close(files[0]);
 	close(files[1]);
 }
-
 
 /*Returns an array of strings:
 output[0] = input_file
