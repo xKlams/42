@@ -6,15 +6,14 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:31:45 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/09/10 16:06:09 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/09/16 21:39:13 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
 # define FRACTOL_H
 
-# define S_WIDTH 1080
-# define S_HEIGHT 720
+# define S_WIDTH 1080/5
+# define S_HEIGHT 720/5
 # define ESC_ITER 100
 # define ESC_NORM 100
 # define ARROW_SPEED 0.5
