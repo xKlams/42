@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 13:51:28 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/09/10 15:53:38 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/09/23 00:24:38 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	main(int argc, char **argv)
 	int				fractal_choice;
 
 	fractal_choice = arg_check(argc, argv);
+	vars.mlx = NULL;
+	vars.win = NULL;
 	init(&vars);
 	if (fractal_choice == 'j')
 	{

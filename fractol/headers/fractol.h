@@ -6,10 +6,11 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 13:31:45 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/09/16 21:39:13 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/09/23 00:43:48 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef FRACTOL_H
 # define FRACTOL_H
 
 # define S_WIDTH 1080/5
@@ -25,6 +26,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <math.h>
+# include <stdio.h>
 # include "libft.h"
 
 typedef struct s_data

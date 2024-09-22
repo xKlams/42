@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 01:06:19 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/09/10 15:55:50 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/09/23 00:57:15 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,17 @@ void	hooks(t_mlx_win *vars)
 void	init(t_mlx_win *vars)
 {
 	vars->mlx = mlx_init();
+	if (!(vars->mlx))
+	{
+		perror("Failed to initialize mlx");
+		exit(EXIT_FAILURE);
+	}
 	vars->win = mlx_new_window(vars->mlx, S_WIDTH, S_HEIGHT, "fractol");
+	if (!(vars->win))
+	{
+		perror("Failed to initialize windows");
+		exit(EXIT_FAILURE);
+	}
 	hooks(vars);
 }
 
