@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 10:38:15 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/09/23 00:12:49 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/09/24 11:59:23 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,13 @@ char	**find_path(char **envp)
 	index = 0;
 	while (envp[index] != NULL)
 	{
-		if (!ft_strncmp(envp[index++], "PATH=", 5))
+		if (!ft_strncmp(envp[index], "PATH=", 5))
 			break ;
+		index++;
 	}
-	envp[--index] += 5;
+	if (envp[index] == NULL)
+		return (NULL);
+	envp[index] += 5;
 	output = ft_split(envp[index], ':');
 	index = 0;
 	while (output[index])
@@ -46,11 +49,8 @@ void	write_error(char *error_message, char *file_name, int *flag)
 	*flag = 0;
 }
 
-int	set_fd(int files[2], char **params)
+int	set_fd(int files[2], char **params, int flag)
 {
-	int	flag;
-
-	flag = 1;
 	if (access(params[0], F_OK))
 		write_error("No such file of directory", params[0], &flag);
 	else if (access(params[0], R_OK))
@@ -58,20 +58,25 @@ int	set_fd(int files[2], char **params)
 	if (!access(params[3], F_OK) && access(params[3], W_OK))
 		write_error("Permission denied", params[3], &flag);
 	if (!flag)
-		return (0);
+	{
+		free(params[0]);
+		free(params[3]);
+		free(params);
+		return (EXIT_FAILURE);
+	}
 	files[0] = open(params[0], O_RDONLY);
 	files[1] = open(params[3], O_WRONLY | O_CREAT, 00644);
-	return (1);
+	return (EXIT_SUCCESS);
 }
 
-int	ft_pipe(char **params, char **envp)
+int	ft_pipe(char **params, char **envp, int flag)
 {
 	int		files[2];
 	int		pipefd[2];
 	int		pid;
 
-	if (!set_fd(files, params))
-		return (0);
+	if (!set_fd(files, params, flag))
+		return (EXIT_FAILURE);
 	pipe(pipefd);
 	pid = fork();
 	if (!pid)
@@ -80,6 +85,10 @@ int	ft_pipe(char **params, char **envp)
 		father(pipefd, files, envp, params);
 	close(files[0]);
 	close(files[1]);
+	free(params[0]);
+	free(params[3]);
+	free(params);
+	return (EXIT_SUCCESS);
 }
 
 /*Returns an array of strings:
@@ -91,24 +100,66 @@ char	**set_params(char **argv, char **paths)
 {
 	char	**output;
 	char	*path_to_command;
+	int		flag;
+	int		i;
 
 	output = (char **)malloc(sizeof(char *) * 5);
-	output[4] = NULL;
-	output[0] = NULL;
-	output[3] = NULL;
-	while (*paths)
-	{
-		path_to_command = ft_strjoin_fw(*paths, argv[2]);
-		if (!access(path_to_command, F_OK | X_OK))
-			output[1] = ft_strjoin(*paths, argv[2]);
-		free(path_to_command);
-		path_to_command = ft_strjoin_fw(*paths, argv[3]);
-		if (!access(path_to_command, F_OK | X_OK))
-			output[2] = ft_strjoin(*paths, argv[3]);
-		free(path_to_command);
-		paths++;
-	}
 	output[0] = ft_strdup(argv[1]);
 	output[3] = ft_strdup(argv[4]);
+	output[4] = NULL;
+	flag = 0;
+	i = -1;
+	while (paths[++i])
+	{
+		path_to_command = ft_strjoin_fw(paths[i], argv[2]);
+		if (!access(path_to_command, F_OK | X_OK))
+			output[++flag] = ft_strjoin(paths[i], argv[2]);
+		free(path_to_command);
+		path_to_command = ft_strjoin_fw(paths[i], argv[3]);
+		if (!access(path_to_command, F_OK | X_OK))
+		{
+			output[++flag] = ft_strjoin(paths[i], argv[3]);
+			flag++;
+		}
+		free(path_to_command);
+		free(paths[i]);
+	}
+	free(paths);
+	if (!error_handler(flag, argv[2], argv[3]))
+	{
+		if (flag == 2)
+			free(output[2]);
+		if (flag == 1)
+			free(output[1]);
+	}
 	return (output);
+}
+
+int		error_handler(int flag, char *first_command, char *second_command)
+{
+	if (flag == 0)
+	{
+		ft_putstr_fd("bash: ", 2);
+		ft_putstr_fd(first_command, 2);
+		ft_putstr_fd(": command not found\n", 2);
+		ft_putstr_fd("bash: ", 2);
+		ft_putstr_fd(second_command, 2);
+		ft_putstr_fd(": command not found\n", 2);
+		return (0);
+	}
+	if (flag == 1)
+	{
+		ft_putstr_fd("bash: ", 2);
+		ft_putstr_fd(second_command, 2);
+		ft_putstr_fd(": command not found\n", 2);
+		return (0);
+	}
+	if (flag == 2)
+	{
+		ft_putstr_fd("bash: ", 2);
+		ft_putstr_fd(first_command, 2);
+		ft_putstr_fd(": command not found\n", 2);
+		return (0);
+	}
+	return (1);
 }
