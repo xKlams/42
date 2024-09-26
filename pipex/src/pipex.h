@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 00:50:12 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/09/23 12:40:13 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/09/26 00:38:34 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@ typedef struct s_command
 	char	**flag;
 }		t_command;
 
+void	free_str_array(char **str_array);
 void	print_str_array(char **str_array);
-void	child(int pipefd[2], int files[2], char **envp, char **params);
-void	father(int pipefd[2], int files[2], char **envp, char **params);
+int		child(int pipefd[2], int files[2], char **envp, char **params);
+int		parent(int pipefd[2], int files[2], char **envp, char **params);
 int		ft_max(int a, int b);
 void	fix_input(char **argv);
 char	**find_path(char **envp);

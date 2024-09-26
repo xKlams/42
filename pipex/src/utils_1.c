@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 10:38:15 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/09/24 11:59:23 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/09/26 00:47:39 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,20 @@ void	write_error(char *error_message, char *file_name, int *flag)
 int	set_fd(int files[2], char **params, int flag)
 {
 	if (access(params[0], F_OK))
-		write_error("No such file of directory", params[0], &flag);
+		write_error("No such file or directory", params[0], &flag);
 	else if (access(params[0], R_OK))
 		write_error("Permission denied", params[0], &flag);
 	if (!access(params[3], F_OK) && access(params[3], W_OK))
 		write_error("Permission denied", params[3], &flag);
+	if (!access(params[3], F_OK) && !access(params[3], W_OK))
+		unlink(params[3]);
 	if (!flag)
 	{
 		free(params[0]);
+		if (params[1])
+			free(params[1]);
+		if (params[2])
+			free(params[2]);
 		free(params[3]);
 		free(params);
 		return (EXIT_FAILURE);
@@ -74,21 +80,24 @@ int	ft_pipe(char **params, char **envp, int flag)
 	int		files[2];
 	int		pipefd[2];
 	int		pid;
+	int		status;
 
-	if (!set_fd(files, params, flag))
+	if (set_fd(files, params, flag))
 		return (EXIT_FAILURE);
 	pipe(pipefd);
 	pid = fork();
+	if (pid == -1)
+	{
+		perror("fork");
+		return (EXIT_FAILURE);
+	}
 	if (!pid)
 		child(pipefd, files, envp, params);
 	else
-		father(pipefd, files, envp, params);
-	close(files[0]);
-	close(files[1]);
-	free(params[0]);
-	free(params[3]);
-	free(params);
-	return (EXIT_SUCCESS);
+	{
+		wait(NULL);
+		return (parent(pipefd, files, envp, params));
+	}
 }
 
 /*Returns an array of strings:
@@ -105,6 +114,8 @@ char	**set_params(char **argv, char **paths)
 
 	output = (char **)malloc(sizeof(char *) * 5);
 	output[0] = ft_strdup(argv[1]);
+	output[1] = NULL;
+	output[2] = NULL;
 	output[3] = ft_strdup(argv[4]);
 	output[4] = NULL;
 	flag = 0;
@@ -128,9 +139,15 @@ char	**set_params(char **argv, char **paths)
 	if (!error_handler(flag, argv[2], argv[3]))
 	{
 		if (flag == 2)
+		{
 			free(output[2]);
+			output[2] = NULL;
+		}
 		if (flag == 1)
+		{
 			free(output[1]);
+			output[1] = NULL;
+		}
 	}
 	return (output);
 }

@@ -6,37 +6,70 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 23:56:28 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/09/24 00:16:30 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/09/26 00:44:50 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	child(int pipefd[2], int files[2], char **envp, char **params)
+int	child(int pipefd[2], int files[2], char **envp, char **params)
 {
 	char	**command;
 
 	close(pipefd[0]);
 	dup2(files[0], STDIN_FILENO);
+	close(files[0]);
 	dup2(pipefd[1], STDOUT_FILENO);
+	close(pipefd[1]);
 	command = ft_split(params[1], ' ');
 	execve(command[0], command, envp);
 	perror("Error");
-	close(pipefd[1]);
+	return (EXIT_FAILURE);
 }
 
-void	father(int pipefd[2], int files[2], char **envp, char **params)
+int	parent(int pipefd[2], int files[2], char **envp, char **params)
 {
 	char	**command;
+	int		status;
+	int		child_status;
 
-	wait(NULL);
-	close(pipefd[1]);
-	dup2(pipefd[0], STDIN_FILENO);
-	dup2(files[1], STDOUT_FILENO);
+	status = fork();
 	command = ft_split(params[2], ' ');
-	execve(command[0], command, envp);
-	perror("Error");
-	close(pipefd[0]);
+	if (status == -1)
+	{
+		perror("fork");
+		return (EXIT_FAILURE);
+	}
+	if (status == 0)
+	{
+		close(pipefd[1]);
+		dup2(pipefd[0], STDIN_FILENO);
+		close(pipefd[0]);
+		dup2(files[1], STDOUT_FILENO);
+		close(files[1]);
+		execve(command[0], command, envp);
+		perror("Error");
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		free_str_array(command);
+		free_str_array(params);
+	}
+	return (EXIT_SUCCESS);
+}
+
+void	free_str_array(char **str_array)
+{
+	int	i;
+
+	i = 0;
+	while (str_array[i])
+	{
+		free(str_array[i]);
+		i++;
+	}
+	free(str_array);
 }
 
 int	ft_max(int a, int b)

@@ -15,7 +15,7 @@ NAME = libft.a
 
 # Compilatore e opzioni
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 .PHONY: all bonus clean fclean re
 # Lista dei file sorgente
 SRC_FILES = ft_isalpha.c \

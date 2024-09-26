@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 18:43:05 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/09/24 01:32:07 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/09/25 19:06:04 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv, char **envp)
 		return (EXIT_FAILURE);
 	}
 	params = set_params(argv, paths);
-	return (!ft_pipe(params, envp, !(params[1] != NULL && params[2] != NULL)));
+	return (!ft_pipe(params, envp, (params[1] != NULL && params[2] != NULL)));
 }
 
 void	print_str_array(char **str_array)
