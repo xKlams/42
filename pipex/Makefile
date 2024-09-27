@@ -6,7 +6,7 @@
 #    By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/21 17:11:06 by fde-sist          #+#    #+#              #
-#    Updated: 2024/09/22 23:57:35 by fde-sist         ###   ########.fr        #
+#    Updated: 2024/09/26 17:28:06 by fde-sist         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = pipex
 
 CC = cc
 
-CFLAGS = -g
+CFLAGS = -g 	
 
 SRC = ./src/main.c ./src/utils_1.c ./src/utils_2.c
 OBJ = $(SRC:.c=.o)

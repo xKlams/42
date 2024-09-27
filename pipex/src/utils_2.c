@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 23:56:28 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/09/26 00:44:50 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/09/27 12:29:25 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	child(int pipefd[2], int files[2], char **envp, char **params)
 {
 	char	**command;
+	int		pid;
 
 	close(pipefd[0]);
 	dup2(files[0], STDIN_FILENO);
@@ -24,52 +25,49 @@ int	child(int pipefd[2], int files[2], char **envp, char **params)
 	command = ft_split(params[1], ' ');
 	execve(command[0], command, envp);
 	perror("Error");
+	free_str_array(command, -1);
+	free_str_array(params, 4);
 	return (EXIT_FAILURE);
 }
 
 int	parent(int pipefd[2], int files[2], char **envp, char **params)
 {
 	char	**command;
-	int		status;
-	int		child_status;
 
-	status = fork();
 	command = ft_split(params[2], ' ');
-	if (status == -1)
-	{
-		perror("fork");
-		return (EXIT_FAILURE);
-	}
-	if (status == 0)
-	{
-		close(pipefd[1]);
-		dup2(pipefd[0], STDIN_FILENO);
-		close(pipefd[0]);
-		dup2(files[1], STDOUT_FILENO);
-		close(files[1]);
-		execve(command[0], command, envp);
-		perror("Error");
-		exit(EXIT_FAILURE);
-	}
-	else
-	{
-		free_str_array(command);
-		free_str_array(params);
-	}
+	close(pipefd[1]);
+	dup2(pipefd[0], STDIN_FILENO);
+	close(pipefd[0]);
+	dup2(files[1], STDOUT_FILENO);
+	close(files[1]);
+	execve(command[0], command, envp);
+	perror("Error");
 	return (EXIT_SUCCESS);
 }
 
-void	free_str_array(char **str_array)
+void	free_str_array(char **str_array, int len)
 {
 	int	i;
 
 	i = 0;
-	while (str_array[i])
+	if (len == -1)
+	{
+		while (str_array[i])
+		{
+			free(str_array[i]);
+			i++;
+		}
+		free(str_array);
+		str_array = NULL;
+		return ;
+	}
+	while (i < len)
 	{
 		free(str_array[i]);
 		i++;
 	}
 	free(str_array);
+	str_array = NULL;
 }
 
 int	ft_max(int a, int b)

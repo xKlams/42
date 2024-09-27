@@ -11,14 +11,17 @@ SRC = main.c \
 
 OBJ = $(SRC:.c=.o)
 
+MLX_LIB = ./mlx/libmlx.a
+
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(MLX_LIB):
 	make -C ./mlx
+
+$(NAME): $(OBJ) $(MLX_LIB)
 	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $^ $(LIBS)
 
 %.o: %.c
-	make -C ./mlx
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
@@ -31,11 +34,4 @@ fclean: clean
 
 re: fclean all
 
-valgrind: re
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s ./$(NAME)
-
-norm:
-	clear
-	norminette $(SRC)
-
-.PHONY: all clean re fclean valgrind norm
+.PHONY: all clean re fclean
