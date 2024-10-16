@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 15:49:56 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/09/10 15:55:43 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/10/16 15:14:38 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ float	f_abs(float a)
 	return (-a * (a < 0) + a * (a >= 0));
 }
 
-//check if secure
 int	arg_check(int argc, char **argv)
 {
 	if (argc < 2 || !option(argv, argc))

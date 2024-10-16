@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 00:50:12 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/09/27 15:36:53 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/10/16 16:41:36 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ char	**find_path(char **envp);
 void	write_error(char *error_message, char *file_name, int *flag);
 int		set_fd(int files[2], char **params, int flag);
 int		ft_pipe(char **params, char **envp, int flag);
-char	**set_params(char **argv, char **paths);
+char	**set_params(char **argv, char **paths, char **output);
 void	error_handler(char *first_command, char *second_command);
+void	initialize_params(char **params, char **argv);
 
 #endif

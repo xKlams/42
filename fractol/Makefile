@@ -1,9 +1,9 @@
 NAME = fractol
 CC = gcc
-CFLAGS =  -Werror -Wall -Wextra -g
+CFLAGS =  -Werror -Wall -Wextra
 
-INCLUDES = -I ./mlx
-LIBS = -L ./mlx ./mlx/libmlx.a -lXext -lX11 -lm
+INCLUDES = -I ./minilibx-linux
+LIBS = -L ./minilibx-linux ./minilibx-linux/libmlx.a -lXext -lX11 -lm
 
 SRC = main.c \
 			mlx_utils_1.c mlx_utils_2.c mlx_utils_3.c \
@@ -11,12 +11,12 @@ SRC = main.c \
 
 OBJ = $(SRC:.c=.o)
 
-MLX_LIB = ./mlx/libmlx.a
+MLX_LIB = ./minilibx-linux/libmlx.a
 
 all: $(NAME)
 
 $(MLX_LIB):
-	make -C ./mlx
+	make -C ./minilibx-linux
 
 $(NAME): $(OBJ) $(MLX_LIB)
 	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $^ $(LIBS)
@@ -25,7 +25,7 @@ $(NAME): $(OBJ) $(MLX_LIB)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	make -C ./mlx clean
+	make -C ./minilibx-linux clean
 	rm -f */$(OBJ)
 	rm -f $(OBJ)
 
