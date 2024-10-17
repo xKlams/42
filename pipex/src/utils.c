@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 23:56:28 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/10/17 01:26:44 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/10/17 11:52:03 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	ft_max(int a, int b)
 
 void	write_error(char *error_message, char *file_name)
 {
-	ft_putstr_fd("bash: ", 2);
+	ft_putstr_fd("zsh: ", 2);
 	ft_putstr_fd(file_name, 2);
 	ft_putstr_fd(": ", 2);
 	ft_putendl_fd(error_message, 2);
@@ -54,13 +54,13 @@ void	error_handler(char *first, char *second, int flag, char **argv)
 {
 	if (!first && flag != -1)
 	{
-		ft_putstr_fd("bash: ", 2);
+		ft_putstr_fd("zsh: ", 2);
 		ft_putstr_fd(argv[2], 2);
 		ft_putstr_fd(": command not found\n", 2);
 	}
 	if (!second)
 	{
-		ft_putstr_fd("bash: ", 2);
+		ft_putstr_fd("zsh: ", 2);
 		ft_putstr_fd(argv[3], 2);
 		ft_putstr_fd(": command not found\n", 2);
 	}

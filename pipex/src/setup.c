@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 10:38:15 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/10/17 01:29:55 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/10/17 11:49:24 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,17 @@ void	set_params(char **argv, char **paths, char **output)
 		free(paths[i]);
 	}
 	free(paths);
+}
+
+char	**initialize_params(char **argv)
+{
+	char	**params;
+
+	params = (char **)malloc(sizeof(char *) * 5);
+	params[0] = ft_strdup(argv[1]);
+	params[1] = NULL;
+	params[2] = NULL;
+	params[3] = ft_strdup(argv[4]);
+	params[4] = NULL;
+	return (params);
 }

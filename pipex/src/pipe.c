@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 01:22:00 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/10/17 01:29:40 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/10/17 12:10:03 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@ int	child(int pipefd[2], int files[2], char **envp, char **params)
 {
 	char	**command;
 
+	if (!params[1])
+	{
+		free_str_array(params, 4);
+		return (EXIT_FAILURE);
+	}
 	close(pipefd[0]);
 	dup2(files[0], STDIN_FILENO);
 	close(files[0]);
@@ -41,36 +46,36 @@ int	parent(int pipefd[2], int files[2], char **envp, char **params)
 	close(files[1]);
 	execve(command[0], command, envp);
 	perror("Error");
-	return (EXIT_SUCCESS);
-}
-
-int	ft_pipe(char **params, char **envp, int files[2])
-{
-	if (params[1] != NULL && files[0] != -1)
-		return (standard_behaviour(params, envp, files));
-	else
-		return (second_command(params, envp, files));
+	return (EXIT_FAILURE);
 }
 
 int	second_command(char **params, char **envp, int files[2])
 {
 	char	**command;
 
+	if (!params[2])
+	{
+		free_str_array(params, 4);
+		return (EXIT_FAILURE);
+	}
 	command = ft_split(params[2], ' ');
-	files[0] = open("", __O_TMPFILE | O_RDWR);
+	files[0] = open("/tmp", __O_TMPFILE | O_RDWR);
 	dup2(files[0], STDIN_FILENO);
 	close(files[0]);
 	dup2(files[1], STDOUT_FILENO);
 	close(files[1]);
 	execve(command[0], command, envp);
 	perror("Error");
+	free_str_array(command, -1);
+	free_str_array(params, 4);
 	return (EXIT_FAILURE);
 }
 
-int	standard_behaviour(char **params, char **envp, int files[2])
+int	ft_pipe(char **params, char **envp, int files[2])
 {
 	int		pipefd[2];
 	int		pid;
+	int		wstatus;
 
 	pipe(pipefd);
 	pid = fork();
@@ -83,7 +88,6 @@ int	standard_behaviour(char **params, char **envp, int files[2])
 		child(pipefd, files, envp, params);
 	else
 	{
-		wait(NULL);
 		if (!params[2])
 		{
 			free_str_array(params, 4);
@@ -91,5 +95,7 @@ int	standard_behaviour(char **params, char **envp, int files[2])
 		}
 		return (parent(pipefd, files, envp, params));
 	}
+	if (waitpid(pid, &wstatus, 0) == -1 || WIFEXITED(wstatus) == 0)
+		exit(1);
 	return (EXIT_FAILURE);
 }

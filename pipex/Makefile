@@ -6,7 +6,7 @@
 #    By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/21 17:11:06 by fde-sist          #+#    #+#              #
-#    Updated: 2024/10/17 01:29:31 by fde-sist         ###   ########.fr        #
+#    Updated: 2024/10/17 11:31:03 by fde-sist         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
-	make -C $(LIBFT_DIR) fclean
+	rm -f ./libft/libft.a
 
 re: fclean all
 
