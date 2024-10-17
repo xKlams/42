@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 18:43:05 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/10/17 00:59:36 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/10/17 01:21:08 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,4 @@ char	**initialize_params(char **argv)
 	params[3] = ft_strdup(argv[4]);
 	params[4] = NULL;
 	return (params);
-}
-
-void	print_str_array(char **str_array)
-{
-	int	i;
-
-	i = 0;
-	while (str_array[i])
-	{
-		ft_putstr_fd(str_array[i], 2);
-		ft_putchar_fd('\n', 2);
-		i++;
-	}
 }

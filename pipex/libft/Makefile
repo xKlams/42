@@ -6,7 +6,7 @@
 #    By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/06 16:51:14 by fde-sist          #+#    #+#              #
-#    Updated: 2024/09/21 20:48:48 by fde-sist         ###   ########.fr        #
+#    Updated: 2024/10/17 01:32:27 by fde-sist         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME = libft.a
 # Compilatore e opzioni
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
-.PHONY: all bonus clean fclean re
+
 # Lista dei file sorgente
 SRC_FILES = ft_isalpha.c \
 			ft_isdigit.c \

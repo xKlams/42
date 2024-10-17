@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_2.c                                          :+:      :+:    :+:   */
+/*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/22 23:56:28 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/10/17 00:35:20 by fde-sist         ###   ########.fr       */
+/*   Created: 2024/10/17 01:22:00 by fde-sist          #+#    #+#             */
+/*   Updated: 2024/10/17 01:29:40 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	child(int pipefd[2], int files[2], char **envp, char **params)
 {
 	char	**command;
-	int		pid;
 
 	close(pipefd[0]);
 	dup2(files[0], STDIN_FILENO);
@@ -45,47 +44,52 @@ int	parent(int pipefd[2], int files[2], char **envp, char **params)
 	return (EXIT_SUCCESS);
 }
 
-void	free_str_array(char **str_array, int len)
+int	ft_pipe(char **params, char **envp, int files[2])
 {
-	int	i;
+	if (params[1] != NULL && files[0] != -1)
+		return (standard_behaviour(params, envp, files));
+	else
+		return (second_command(params, envp, files));
+}
 
-	i = 0;
-	if (len == -1)
+int	second_command(char **params, char **envp, int files[2])
+{
+	char	**command;
+
+	command = ft_split(params[2], ' ');
+	files[0] = open("", __O_TMPFILE | O_RDWR);
+	dup2(files[0], STDIN_FILENO);
+	close(files[0]);
+	dup2(files[1], STDOUT_FILENO);
+	close(files[1]);
+	execve(command[0], command, envp);
+	perror("Error");
+	return (EXIT_FAILURE);
+}
+
+int	standard_behaviour(char **params, char **envp, int files[2])
+{
+	int		pipefd[2];
+	int		pid;
+
+	pipe(pipefd);
+	pid = fork();
+	if (pid == -1)
 	{
-		while (str_array[i])
+		perror("fork");
+		return (EXIT_FAILURE);
+	}
+	if (!pid)
+		child(pipefd, files, envp, params);
+	else
+	{
+		wait(NULL);
+		if (!params[2])
 		{
-			free(str_array[i]);
-			i++;
+			free_str_array(params, 4);
+			return (EXIT_FAILURE);
 		}
-		free(str_array);
-		str_array = NULL;
-		return ;
+		return (parent(pipefd, files, envp, params));
 	}
-	while (i < len)
-	{
-		free(str_array[i]);
-		i++;
-	}
-	free(str_array);
-	str_array = NULL;
-}
-
-int	ft_max(int a, int b)
-{
-	return (a * (a > b) + b * (b >= a));
-}
-
-/*Replaces tabs with spaces*/
-void	fix_input(char **argv)
-{
-	int	i;
-
-	i = -1;
-	while (argv[2][++i])
-		if (argv[2][i] <= 13 && argv[2][i] >= 9)
-			argv[2][i] = ' ';
-	i = -1;
-	while (argv[3][++i])
-		if (argv[3][i] <= 13 && argv[3][i] >= 9)
-			argv[3][i] = ' ';
+	return (EXIT_FAILURE);
 }

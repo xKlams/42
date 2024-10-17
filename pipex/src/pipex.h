@@ -25,18 +25,18 @@ typedef struct s_command
 }		t_command;
 
 char	**initialize_params(char **argv);
-void	print_str_array(char **str_array);
 char	**find_path(char **envp);
-void	write_error(char *error_message, char *file_name);
+void	fix_input(char **argv);
 int		set_fd(int files[2], char **params);
-int		standard_behaviour(char **params, char **envp, int files[2]);
-int		ft_pipe(char **params, char **envp, int files[2]);
 void	set_params(char **argv, char **paths, char **output);
-void	error_handler(char *first_command, char *second_command, int flag, char **argv);
 int		child(int pipefd[2], int files[2], char **envp, char **params);
 int		parent(int pipefd[2], int files[2], char **envp, char **params);
+int		ft_pipe(char **params, char **envp, int files[2]);
+int		second_command(char **params, char **envp, int files[2]);
+int		standard_behaviour(char **params, char **envp, int files[2]);
 void	free_str_array(char **str_array, int len);
 int		ft_max(int a, int b);
-void	fix_input(char **argv);
+void	write_error(char *error_message, char *file_name);
+void	error_handler(char *first, char *second, int flag, char **argv);
 
 #endif

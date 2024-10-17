@@ -26,7 +26,6 @@ $(NAME): $(OBJ) $(MLX_LIB)
 
 clean:
 	make -C ./minilibx-linux clean
-	rm -f */$(OBJ)
 	rm -f $(OBJ)
 
 fclean: clean
