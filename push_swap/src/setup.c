@@ -6,19 +6,20 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 18:05:55 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/10/17 18:08:02 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/10/23 00:30:33 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_stack (t_stack *stack)
+void	print_stack(t_stack *stack)
 {
-	int i;
+	int	i;
 
-	i = 0;
-	while (i < stack->size)
+	i = stack->start;
+	while (i < stack->size + stack->start)
 		printf("%d ", stack->array[i++]);
+	printf("\n");
 }
 
 //Turns spaces variant into standard spaces
@@ -35,6 +36,7 @@ void	fix_input(char **argv)
 			if (argv[j][i] <= 13 && argv[j][i] >= 9)
 				argv[j][i] = ' ';
 		i = -1;
+
 	}
 }
 
@@ -55,7 +57,7 @@ t_stack	*set_stack(char **argv)
 		free(output->array);
 		free(output);
 		ft_putstr_fd("Error\n", 2);
-		exit(1);	
+		exit(1);
 	}
 	return (output);
 }
@@ -119,6 +121,7 @@ int	count_numbers(char **argv)
 
 	i = 0;
 	j = 0;
+	output = 0;	
 	while (argv[++j])
 	{
 		while (argv[j][i])
