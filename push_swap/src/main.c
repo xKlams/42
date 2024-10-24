@@ -187,8 +187,15 @@ int	calculate_moves(t_moves *moves, t_stack *a, t_stack *b, int i)
 	output += moves->rb;
 	output += moves->rra;
 	output += moves->rrb;
-	printf("output = %d\n", output);
 	return (output);
+}
+
+int ft_modulo(int a, int b)
+{
+    if (a >= 0)
+        return (a % b);
+    else
+        return ((a + b) % b);
 }
 
 int	is_modulo_sorted(t_stack stack, int element, int position)
@@ -208,11 +215,13 @@ int	is_modulo_sorted(t_stack stack, int element, int position)
 	while (++i < stack.size + 1)
 		if (stack.array[stack.start -1 + i] < stack.array[stack.start -1 + min])
 			min = i;
-	i = 0;
     stack.size++;
+	i = -1;
 	while (++i < stack.size - 1)
-            if (stack.array[stack.start-1 + (min + i) % stack.size] < stack.array[stack.start-1 + (min + i + 1) % stack.size])
-			    output = 0;
+    {
+        if (stack.array[stack.start-1 + ft_modulo(min - i, stack.size)] > stack.array[stack.start-1 + ft_modulo(min - i - 1, stack.size)])
+            output = 0;
+    }
     stack.size--;
     i = position + 1;
     while (--i >= stack.start)

@@ -58,6 +58,7 @@ int		find_cheapest_element(t_stack *a, t_stack *b);
 int		ft_abs(int a);
 int		calculate_moves(t_moves *moves, t_stack *a, t_stack *b, int i);
 int		is_modulo_sorted(t_stack stack, int element, int position);
+int		ft_modulo(int a, int b);
 void	reset_moves(t_moves *moves);
 void	rotate_array(int array[], int lenght, int positions, char *toward);
 int		gcd(int a, int b);

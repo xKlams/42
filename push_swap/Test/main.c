@@ -39,6 +39,14 @@ void    print_array(int *arr, int size)
 
 }
 
+int ft_modulo(int a, int b)
+{
+    if (a >= 0)
+        return (a % b);
+    else
+        return ((a + b) % b);
+}
+
 int	is_modulo_sorted(t_stack stack, int element, int position)
 {
 	int	i;
@@ -56,18 +64,19 @@ int	is_modulo_sorted(t_stack stack, int element, int position)
 	while (++i < stack.size + 1)
 		if (stack.array[stack.start -1 + i] < stack.array[stack.start -1 + min])
 			min = i;
-	i = 0;
     stack.size++;
+	i = -1;
 	while (++i < stack.size - 1)
-            if (stack.array[stack.start-1 + (min + i) % stack.size] > stack.array[stack.start-1 + (min + i + 1) % stack.size])
-			    output = 0;
+    {
+        if (stack.array[stack.start-1 + ft_modulo(min - i, stack.size)] > stack.array[stack.start-1 + ft_modulo(min - i - 1, stack.size)])
+            output = 0;
+    }
     stack.size--;
     i = position + 1;
     while (--i >= stack.start)
         stack.array[i] = stack.array[i - 1];
 	return (output);
 }
-
 
 void	rotate_array(int arr[], int n, int d, char *rotation)
 {
@@ -94,19 +103,26 @@ void	rotate_array(int arr[], int n, int d, char *rotation)
 }
 
 int main() {
-    int arr[] = {0, 1, 2, 4, 5, 6};
+    int arr[] = {6, 5, 4, 2, 1, 0};
     int n = 6;
     int d = 1;
     t_stack stack;
 
-    stack.array = arr;
+    stack.array = (int *)malloc(6);
+    stack.array[0] = 6;
+    stack.array[1] = 5;
+    stack.array[2] = 4;
+    stack.array[3] = 2;
+    stack.array[4] = 1;
+    stack.array[5] = 0;
     stack.size = n - 1  ;
     stack.start = 1;
     // printf("\n");
 
+    print_array(stack.array + stack.start   , stack.size);
     rotate_array(stack.array + stack.start, stack.size, 2, "L");
     print_array(stack.array + stack.start   , stack.size);
-    printf("is it still sorted? %d\n", is_modulo_sorted(stack, 7, 4));
+    printf("is it still sorted? %d\n", is_modulo_sorted(stack, 3, 5));
     print_array(stack.array + stack.start   , stack.size);
     return 0;
 }
