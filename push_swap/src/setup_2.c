@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 18:17:48 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/10/24 18:28:27 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/10/25 00:34:23 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	check_sign(char **argv)
 		j = 0;
 		while (argv[i][j])
 		{
-			checks(argv, sign, i, j);
+			checks(argv, &sign, i, j);
 			j++;
 		}
 		i++;
@@ -42,17 +42,17 @@ void	check_sign(char **argv)
 		error();
 }
 
-void	checks(char **argv, int sign, int i, int j)
+void	checks(char **argv, int *sign, int i, int j)
 {
 	if (argv[i][j] == '-' || argv[i][j] == '+')
 	{
-		if (sign || j > 0 && j - 1 != ' ')
+		if (*sign || (j > 0 && argv[i][j - 1] != ' '))
 			error();
-		sign = 1;
+		*sign = 1;
 	}
 	if (argv[i][j] <= '9' && argv[i][j] >= '0')
-		sign = 0;
-	if (!is_num(argv[i][j]) && sign)
+		*sign = 0;
+	if (!is_num(argv[i][j]) && *sign)
 		error();
 }
 
@@ -76,7 +76,7 @@ int	check_duplicates(int *array, int size)
 	return (EXIT_SUCCESS);
 }
 
-int	set_numbers(char **argv, int *output, int size)
+int	set_numbers(char **argv, int *output)
 {
 	int			index;
 	int			i;

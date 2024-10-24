@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 18:39:00 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/10/25 00:10:37 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/10/25 00:27:41 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	modulo_asc_aux(t_stack stack, int min, int pos, int element)
 			return (1);
 		return (0);
 	}
-	while (++i < stack.size + 1)
+	while (++i < (int) stack.size + 1)
 	{
 		if (stack.array[stack.start + ft_modulo(min + i, stack.size)]
 			< element && element
@@ -42,12 +42,10 @@ int	is_modulo_sorted_asc(t_stack stack, int element, int position)
 {
 	int	i;
 	int	min;
-	int	output;
 
-	output = 1;
 	i = 0;
 	min = 0;
-	while (++i < stack.size)
+	while (++i < (int)stack.size)
 	{
 		if (stack.array[stack.start + i] < stack.array[stack.start + min])
 			min = i;
@@ -71,9 +69,9 @@ void	group_stacks(t_stack *a, t_stack *b)
 		reset_moves(&moves);
 		i = 0;
 		while (!(is_modulo_sorted_asc(*a, b->array[b->start], i))
-			&& i < a->size)
+			&& i < (int)a->size)
 			i++;
-		if (i <= a->size / 2)
+		if (i <= (int)a->size / 2)
 			moves.ra += i;
 		else
 			moves.rra += ft_abs(a->size - i);
@@ -92,10 +90,10 @@ void	group_stacks_aux(t_stack *a, t_stack *b, t_moves *moves)
 
 	i = -1;
 	min = 0;
-	while (++i < a->size)
+	while (++i < (int)a->size)
 		if (a->array[a->start + i] < a->array[a->start + min])
 			min = i;
-	if (min < a->size / 2)
+	if (min < (int)a->size / 2)
 		moves->ra += min;
 	else
 		moves->rra += ft_abs(a->size - min);

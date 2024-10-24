@@ -6,7 +6,7 @@
 #    By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/21 17:11:06 by fde-sist          #+#    #+#              #
-#    Updated: 2024/10/24 18:39:26 by fde-sist         ###   ########.fr        #
+#    Updated: 2024/10/25 00:23:40 by fde-sist         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = push_swap
 
 CC = cc
 
-CFLAGS = -g 
+CFLAGS = -g -Wall -Wextra -Werror
 
 SRC = ./src/main.c ./src/setup.c ./src/utils.c ./src/utils_6.c ./src/utils_2.c ./src/utils_3.c ./src/utils_4.c ./src/utils_5.c ./src/setup_2.c
 OBJ = $(SRC:.c=.o)
