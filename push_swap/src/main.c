@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 18:53:34 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/10/24 18:53:46 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/10/25 00:07:50 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ int	main(int argc, char **argv)
 
 void	leq_five(t_stack *stack_a, t_stack *stack_b)
 {
-	if (stack_a->size == 1)
-		return ;
 	if (stack_a->size == 2)
 	{
 		if (stack_a->array[0] > stack_a->array[1])
@@ -39,19 +37,22 @@ void	leq_five(t_stack *stack_a, t_stack *stack_b)
 			ft_putstr_fd("sa\n", 1);
 		}
 	}
-	if (stack_a->size == 3)
+	else if (stack_a->size == 3)
 		fix_a(stack_a);
-	if (stack_a->size == 4)
+	else if (stack_a->size == 4)
 		four(stack_a, stack_b);
-	put_elements(stack_a, stack_b, 2);
-	ft_putstr_fd("pb\npb\n", STDOUT_FILENO);
-	if (stack_b->array[0] < stack_b->array[1])
+	else if (stack_a->size == 5)
 	{
-		sa(stack_b);
-		ft_putstr_fd("sb\n", 1);
+		put_elements(stack_a, stack_b, 2);
+		ft_putstr_fd("pb\npb\n", STDOUT_FILENO);
+		if (stack_b->array[0] < stack_b->array[1])
+		{
+			sa(stack_b);
+			ft_putstr_fd("sb\n", 1);
+		}
+		fix_a(stack_a);
+		group_stacks(stack_a, stack_b);
 	}
-	fix_a(stack_a);
-	group_stacks(stack_a, stack_b);
 }
 
 //Main Soritng function
@@ -83,28 +84,10 @@ void	free_stack(t_stack *stack)
 	free(stack);
 }
 
-int	is_modulo_sorted_asc(t_stack stack, int element, int position)
+//Euclidean algorithm to compute GDC
+int	gcd(int a, int b)
 {
-	int	i;
-	int	min;
-	int	output;
-
-	output = 1;
-	i = stack.start - 2;
-	position += stack.start - 1;
-	while (++i < position)
-		stack.array[i] = stack.array[i + 1];
-	stack.array[position] = element;
-	i = 0;
-	min = 0;
-	while (++i < stack.size + 1)
-		if (stack.array[stack.start -1 + i] < stack.array[stack.start -1 + min])
-			min = i;
-	stack.size++;
-	is_modulo_sorted_asc_aux(stack, &output, min);
-	stack.size--;
-	i = position + 1;
-	while (--i >= stack.start)
-		stack.array[i] = stack.array[i - 1];
-	return (output);
+	if (a == 0)
+		return (b);
+	return (gcd(b % a, a));
 }

@@ -6,25 +6,59 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 18:39:00 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/10/24 18:48:05 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/10/25 00:10:37 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	is_modulo_sorted_asc_aux(t_stack stack, int *output, int min)
+int	modulo_asc_aux(t_stack stack, int min, int pos, int element)
 {
 	int	i;
 
 	i = -1;
-	while (++i < stack.size - 1)
+	if (element >= stack.array[stack.start + ft_modulo(min - 1, stack.size)])
 	{
-		if (stack.array[stack.start - 1 + ft_modulo(min + i, stack.size)]
-			> stack.array[stack.start - 1 + ft_modulo(min + i + 1, stack.size)])
-			*output = 0;
-		if (!*output)
-			break ;
+		if (pos == ft_modulo(min, stack.size))
+			return (1);
+		return (0);
 	}
+	while (++i < stack.size + 1)
+	{
+		if (stack.array[stack.start + ft_modulo(min + i, stack.size)]
+			< element && element
+			< stack.array[stack.start + ft_modulo(min + i + 1, stack.size)])
+		{
+			if (pos != ft_modulo(min + i + 1, stack.size))
+				return (0);
+			else
+				return (1);
+		}
+	}
+	return (0);
+}
+
+int	is_modulo_sorted_asc(t_stack stack, int element, int position)
+{
+	int	i;
+	int	min;
+	int	output;
+
+	output = 1;
+	i = 0;
+	min = 0;
+	while (++i < stack.size)
+	{
+		if (stack.array[stack.start + i] < stack.array[stack.start + min])
+			min = i;
+	}
+	if (element <= stack.array[stack.start + min])
+	{
+		if (position == min)
+			return (1);
+		return (0);
+	}
+	return (modulo_asc_aux(stack, min, position, element));
 }
 
 void	group_stacks(t_stack *a, t_stack *b)
@@ -46,11 +80,12 @@ void	group_stacks(t_stack *a, t_stack *b)
 		moves.pa++;
 		apply_moves(moves, a, b);
 	}
-	group_stacks_aux(a, b, moves);
+	reset_moves(&moves);
+	group_stacks_aux(a, b, &moves);
 	reset_moves(&moves);
 }
 
-void	group_stacks_aux(t_stack *a, t_stack *b, t_moves moves)
+void	group_stacks_aux(t_stack *a, t_stack *b, t_moves *moves)
 {
 	int	i;
 	int	min;
@@ -61,10 +96,10 @@ void	group_stacks_aux(t_stack *a, t_stack *b, t_moves moves)
 		if (a->array[a->start + i] < a->array[a->start + min])
 			min = i;
 	if (min < a->size / 2)
-		moves.ra += min;
+		moves->ra += min;
 	else
-		moves.rra += ft_abs(a->size - min);
-	apply_moves(moves, a, b);
+		moves->rra += ft_abs(a->size - min);
+	apply_moves(*moves, a, b);
 }
 
 void	calculate_moves_aux(t_moves *moves, int *output, int j)
@@ -72,7 +107,7 @@ void	calculate_moves_aux(t_moves *moves, int *output, int j)
 	if (moves->rra > 0 && moves->rrb > 0)
 	{
 		j = ft_min(moves->rra, moves->rrb);
-		output += j;
+		*output += j;
 		moves->rra -= j;
 		moves->rrb -= j;
 		moves->rrr += j;
@@ -80,21 +115,13 @@ void	calculate_moves_aux(t_moves *moves, int *output, int j)
 	if (moves->ra > 0 && moves->rb > 0)
 	{
 		j = ft_min(moves->ra, moves->rb);
-		output += j;
+		*output += j;
 		moves->ra -= j;
 		moves->rb -= j;
 		moves->rr += j;
 	}
-	output += moves->ra;
-	output += moves->rb;
-	output += moves->rra;
-	output += moves->rrb;
-}
-
-//Euclidean algorithm to compute GDC
-int	gcd(int a, int b)
-{
-	if (a == 0)
-		return (b);
-	return (gcd(b % a, a));
+	*output += moves->ra;
+	*output += moves->rb;
+	*output += moves->rra;
+	*output += moves->rrb;
 }

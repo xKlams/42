@@ -6,13 +6,14 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 18:54:44 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/10/24 18:59:21 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/10/24 21:42:49 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include <limits.h>
+# include <stdio.h>
 # include "../libft/libft.h"
 
 typedef struct s_stack
@@ -52,7 +53,7 @@ t_stack	*set_stack(char **argv);
 void	leq_five(t_stack *stack_a, t_stack *stack_b);
 void	mechanical_turk(t_stack *stack);
 void	free_stack(t_stack *stack);
-int		is_modulo_sorted_asc(t_stack stack, int element, int position);
+int		gcd(int a, int b);
 int		fix_a(t_stack *a);
 void	make_move(t_stack *a, t_stack *b);
 void	put_times(char *str, int times);
@@ -64,8 +65,8 @@ int		find_cheapest_element(t_stack *a, t_stack *b);
 int		ft_abs(int a);
 int		calculate_moves(t_moves *moves, t_stack *a, t_stack *b, int i);
 int		ft_modulo(int a, int b);
+int		modulo_aux(t_stack stack, int min, int pos, int element);
 int		is_modulo_sorted(t_stack stack, int element, int position);
-void	is_modulo_sorted_aux(int i, t_stack stack, int *output, int min);
 void	reset_moves(t_moves *moves);
 void	rotate_array(int array[], int lenght, int positions, char *toward);
 void	stacks_setup(t_stack **stack_a, t_stack **stack_b, t_stack *stack);
@@ -82,10 +83,10 @@ int		is_num(char c);
 int		count_numbers(char **argv);
 void	next_num(int j, int *i, char **argv);
 void	four(t_stack *stack_a, t_stack *stack_b);
-void	is_modulo_sorted_asc_aux(t_stack stack, int *output, int min);
+int		modulo_asc_aux(t_stack stack, int min, int pos, int element);
+int		is_modulo_sorted_asc(t_stack stack, int element, int position);
 void	group_stacks(t_stack *a, t_stack *b);
-void	group_stacks_aux(t_stack *a, t_stack *b, t_moves moves);
+void	group_stacks_aux(t_stack *a, t_stack *b, t_moves *moves);
 void	calculate_moves_aux(t_moves *moves, int *output, int j);
-int		gcd(int a, int b);
 
 #endif
