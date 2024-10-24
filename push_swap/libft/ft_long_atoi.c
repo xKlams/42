@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 18:08:07 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/10/17 17:11:10 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/10/24 15:30:57 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 long int	ft_long_atoi(const char *nptr)
 {
 	long int	i;
-	int	        sign;
+	int			sign;
 
 	i = 0;
 	sign = 1;

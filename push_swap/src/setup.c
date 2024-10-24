@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 18:05:55 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/10/23 00:30:33 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/10/24 15:09:09 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ t_stack	*set_stack(char **argv)
 	int	size;
 
 	size = count_numbers(argv);
-	if (size == -1)
-		exit(1);
+	check_sign(argv);
 	output = (t_stack *)malloc(sizeof(t_stack));
 	output->array = (int *)malloc(sizeof(int) * size);
 	output->size = size;
@@ -61,6 +60,37 @@ t_stack	*set_stack(char **argv)
 	}
 	return (output);
 }
+
+void	check_sign(char **argv)
+{
+	int	i;
+	int	j;
+	int	sign;
+
+	i = 0;
+	sign = 0;
+	while (argv[i])
+	{
+		j = 0;
+		while (argv[i][j])
+		{
+			if (argv[i][j] == '-' || argv[i][j] == '+')
+			{
+				if (sign)
+				{
+					ft_putstr_fd("Error\n", 2);
+					exit(1);
+				}
+				sign = 1;
+			}
+			if (argv[i][j] <= '9' && argv[i][j] >= '0')
+				sign = 0;
+			j++;
+		}
+		i++;
+	}
+}
+	
 
 int	check_duplicates(int *array, int size)
 {
@@ -127,7 +157,7 @@ int	count_numbers(char **argv)
 		while (argv[j][i])
 		{
 			if (is_num(argv[j][i]))
-			output++;
+				output++;
 			while (is_num(argv[j][i]) )
 				i++;
 			while (argv[j][i] == ' ')
@@ -135,7 +165,7 @@ int	count_numbers(char **argv)
 			if (!is_num(argv[j][i]) && argv[j][i])
 			{
 				ft_putstr_fd("Error\n", 2);
-				return (-1);
+				exit(1);
 			}
 		}
 		i = 0;
@@ -145,5 +175,9 @@ int	count_numbers(char **argv)
 
 int	is_num(char c)
 {
-	return (c >= '0' && c <= '9' || c == '+' || c == '-');
+	if (c >= '0' && c <= '9')
+		return (1);
+	if (c == '+' || c == '-')
+		return (1);
+	return (0);
 }

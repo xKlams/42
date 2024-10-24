@@ -47,7 +47,7 @@ int ft_modulo(int a, int b)
         return ((a + b) % b);
 }
 
-int	is_modulo_sorted(t_stack stack, int element, int position)
+int	is_modulo_sorted_asc(t_stack stack, int element, int position)
 {
 	int	i;
 	int	min;
@@ -68,7 +68,7 @@ int	is_modulo_sorted(t_stack stack, int element, int position)
 	i = -1;
 	while (++i < stack.size - 1)
     {
-        if (stack.array[stack.start-1 + ft_modulo(min - i, stack.size)] > stack.array[stack.start-1 + ft_modulo(min - i - 1, stack.size)])
+        if (stack.array[stack.start-1 + ft_modulo(min + i, stack.size)] > stack.array[stack.start-1 + ft_modulo(min + i + 1, stack.size)])
             output = 0;
     }
     stack.size--;
@@ -103,27 +103,27 @@ void	rotate_array(int arr[], int n, int d, char *rotation)
 }
 
 int main() {
-    int arr[] = {6, 5, 4, 2, 1, 0};
     int n = 6;
     int d = 1;
-    t_stack stack;
+    t_stack *stack;
 
-    stack.array = (int *)malloc(6);
-    stack.array[0] = 6;
-    stack.array[1] = 5;
-    stack.array[2] = 4;
-    stack.array[3] = 2;
-    stack.array[4] = 1;
-    stack.array[5] = 0;
-    stack.size = n - 1  ;
-    stack.start = 1;
+    stack = (t_stack *)malloc(sizeof(t_stack));
+    stack->array = (int *)malloc(6);
+    stack->array[0] = 1;
+    stack->array[1] = 2;
+    stack->array[2] = 4;
+    stack->array[3] = 5;
+    stack->array[4] = 6;
+    stack->array[5] = 0;
+    stack->size = n - 1  ;
+    stack->start = 1;
     // printf("\n");
 
-    print_array(stack.array + stack.start   , stack.size);
-    rotate_array(stack.array + stack.start, stack.size, 2, "L");
-    print_array(stack.array + stack.start   , stack.size);
-    printf("is it still sorted? %d\n", is_modulo_sorted(stack, 3, 5));
-    print_array(stack.array + stack.start   , stack.size);
+    print_array(stack->array + stack->start   , stack->size);
+    rotate_array(stack->array + stack->start, stack->size, 2, "L");
+    print_array(stack->array + stack->start   , stack->size);
+    printf("is it still sorted? %d\n", is_modulo_sorted_asc(*stack, 1, 0));
+    print_array(stack->array + stack->start   , stack->size);
     return 0;
 }
 
