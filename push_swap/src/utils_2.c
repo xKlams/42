@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 18:16:01 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/10/25 11:30:51 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/10/25 11:36:51 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,7 @@ int	calculate_moves(t_moves *moves, t_stack *a, t_stack *b, int i)
 		moves->ra += i;
 	else
 		moves->rra += ft_abs(a->size - i);
-	while (!(is_modulo_sorted(*b, a->array[a->start + i], j)) && j < b->size)
-		j++;
+	j = modulo_sorted_pos(*b, a->array[a->start + i]);
 	if (j <= b->size / 2)
 		moves->rb += j;
 	else

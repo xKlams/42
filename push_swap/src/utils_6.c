@@ -6,39 +6,30 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 18:39:00 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/10/25 00:27:41 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/10/25 11:41:36 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	modulo_asc_aux(t_stack stack, int min, int pos, int element)
+int	modulo_asc_aux(t_stack stack, int min, int element)
 {
 	int	i;
 
 	i = -1;
 	if (element >= stack.array[stack.start + ft_modulo(min - 1, stack.size)])
-	{
-		if (pos == ft_modulo(min, stack.size))
-			return (1);
-		return (0);
-	}
+		return (ft_modulo(min, stack.size));
 	while (++i < (int) stack.size + 1)
 	{
 		if (stack.array[stack.start + ft_modulo(min + i, stack.size)]
 			< element && element
 			< stack.array[stack.start + ft_modulo(min + i + 1, stack.size)])
-		{
-			if (pos != ft_modulo(min + i + 1, stack.size))
-				return (0);
-			else
-				return (1);
-		}
+			return (ft_modulo(min + i + 1, stack.size));
 	}
 	return (0);
 }
 
-int	is_modulo_sorted_asc(t_stack stack, int element, int position)
+int	modulo_sorted_asc(t_stack stack, int element)
 {
 	int	i;
 	int	min;
@@ -51,12 +42,8 @@ int	is_modulo_sorted_asc(t_stack stack, int element, int position)
 			min = i;
 	}
 	if (element <= stack.array[stack.start + min])
-	{
-		if (position == min)
-			return (1);
-		return (0);
-	}
-	return (modulo_asc_aux(stack, min, position, element));
+		return (min);
+	return (modulo_asc_aux(stack, min, element));
 }
 
 void	group_stacks(t_stack *a, t_stack *b)
@@ -68,9 +55,7 @@ void	group_stacks(t_stack *a, t_stack *b)
 	{
 		reset_moves(&moves);
 		i = 0;
-		while (!(is_modulo_sorted_asc(*a, b->array[b->start], i))
-			&& i < (int)a->size)
-			i++;
+		i = modulo_sorted_asc(*a, b->array[b->start]);
 		if (i <= (int)a->size / 2)
 			moves.ra += i;
 		else

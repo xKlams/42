@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 18:54:44 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/10/25 10:54:13 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/10/25 11:41:57 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ int		find_cheapest_element(t_stack *a, t_stack *b);
 int		ft_abs(int a);
 int		calculate_moves(t_moves *moves, t_stack *a, t_stack *b, int i);
 int		ft_modulo(int a, int b);
-int		modulo_aux(t_stack stack, int min, int pos, int element);
-int		is_modulo_sorted(t_stack stack, int element, int position);
+int		modulo_aux(t_stack stack, int min, int element);
+int		modulo_sorted_pos(t_stack stack, int element);
 void	reset_moves(t_moves *moves);
 void	rotate_array(int array[], int lenght, int positions, char *toward);
 void	stacks_setup(t_stack **stack_a, t_stack **stack_b, t_stack *stack);
@@ -83,8 +83,8 @@ int		is_num(char c);
 int		count_numbers(char **argv);
 void	next_num(int j, int *i, char **argv);
 void	four(t_stack *stack_a, t_stack *stack_b);
-int		modulo_asc_aux(t_stack stack, int min, int pos, int element);
-int		is_modulo_sorted_asc(t_stack stack, int element, int position);
+int		modulo_asc_aux(t_stack stack, int min, int element);
+int		modulo_sorted_asc(t_stack stack, int element);
 void	group_stacks(t_stack *a, t_stack *b);
 void	group_stacks_aux(t_stack *a, t_stack *b, t_moves *moves);
 void	calculate_moves_aux(t_moves *moves, int *output, int j);

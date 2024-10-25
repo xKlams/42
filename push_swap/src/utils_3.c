@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 18:16:24 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/10/25 11:07:09 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/10/25 11:34:48 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,33 +20,24 @@ int	ft_modulo(int a, int b)
 		return ((a + b) % b);
 }
 
-int	modulo_aux(t_stack stack, int min, int pos, int element)
+int	modulo_aux(t_stack stack, int min, int element)
 {
 	int	i;
 
 	i = -1;
 	if (element >= stack.array[stack.start + ft_modulo(min + 1, stack.size)])
-	{
-		if (pos == ft_modulo(min + 1, stack.size))
-			return (1);
-		return (0);
-	}
+		return (ft_modulo(min + 1, stack.size));
 	while (++i < stack.size + 1)
 	{
 		if (stack.array[stack.start + ft_modulo(min - i, stack.size)]
 			< element && element
 			< stack.array[stack.start + ft_modulo(min - i - 1, stack.size)])
-		{
-			if (pos != ft_modulo(min - i, stack.size))
-				return (0);
-			else
-				return (1);
-		}
+			return  (ft_modulo(min - i, stack.size));
 	}
 	return (0);
 }
 
-int	is_modulo_sorted(t_stack stack, int element, int position)
+int	modulo_sorted_pos(t_stack stack, int element)
 {
 	int	i;
 	int	min;
@@ -59,12 +50,8 @@ int	is_modulo_sorted(t_stack stack, int element, int position)
 			min = i;
 	}
 	if (element <= stack.array[stack.start + min])
-	{
-		if (position == ft_modulo(min + 1, stack.size))
-			return (1);
-		return (0);
-	}
-	return (modulo_aux(stack, min, position, element));
+		return (ft_modulo(min + 1, stack.size));
+	return (modulo_aux(stack, min, element));
 }
 
 //Set all the moves to 0
