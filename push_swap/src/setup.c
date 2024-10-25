@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 18:05:55 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/10/24 18:58:52 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/10/25 10:44:08 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_stack	*set_stack(char **argv)
 	output = (t_stack *)malloc(sizeof(t_stack));
 	output->array = (int *)malloc(sizeof(int) * size);
 	output->size = size;
-	if (set_numbers(argv, output->array, output->size)
+	if (set_numbers(argv, output->array)
 		|| check_duplicates(output->array, output->size))
 	{
 		free(output->array);

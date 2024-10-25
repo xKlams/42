@@ -6,13 +6,13 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 18:15:40 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/10/25 00:01:55 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/10/25 10:44:51 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	fix_a(t_stack *a)
+void	fix_a(t_stack *a)
 {
 	t_moves	moves;
 	int		*arr;

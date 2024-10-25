@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 18:17:48 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/10/25 00:34:23 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/10/25 11:03:03 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ int	set_numbers(char **argv, int *output)
 	{
 		while (argv[j][i])
 		{
+			if (argv[j][i] == ' ')
+				i++;
 			if (is_num(argv[j][i]))
 			{
 				atoi_out = ft_long_atoi(argv[j] + i);

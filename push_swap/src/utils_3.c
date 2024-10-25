@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 18:16:24 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/10/25 00:09:28 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/10/25 11:07:09 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,7 @@ int	is_modulo_sorted(t_stack stack, int element, int position)
 {
 	int	i;
 	int	min;
-	int	output;
-
-	output = 1;
+	
 	i = 0;
 	min = 0;
 	while (++i < stack.size)

@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 18:16:43 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/10/24 18:43:40 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/10/25 11:08:55 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	stacks_setup(t_stack **stack_a, t_stack **stack_b, t_stack *stack)
  of stack src into stack dest, Like multiple pb*/
 void	put_elements(t_stack *src, t_stack *dest, size_t n)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (i < n)

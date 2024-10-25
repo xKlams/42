@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 18:54:44 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/10/24 21:42:49 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/10/25 10:54:13 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 
 typedef struct s_stack
 {
-	size_t	size;
-	int		*array;
-	int		start;
-	size_t	dim;
+	int	size;
+	int	*array;
+	int	start;
+	int	dim;
 }		t_stack;
 
 typedef struct s_rotate
@@ -54,7 +54,7 @@ void	leq_five(t_stack *stack_a, t_stack *stack_b);
 void	mechanical_turk(t_stack *stack);
 void	free_stack(t_stack *stack);
 int		gcd(int a, int b);
-int		fix_a(t_stack *a);
+void	fix_a(t_stack *a);
 void	make_move(t_stack *a, t_stack *b);
 void	put_times(char *str, int times);
 void	apply_moves(t_moves moves, t_stack *a, t_stack *b);
