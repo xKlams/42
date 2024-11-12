@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 00:50:12 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/10/17 00:34:07 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/11/12 09:37:27 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	set_params(char **argv, char **paths, char **output);
 int		child(int pipefd[2], int files[2], char **envp, char **params);
 int		parent(int pipefd[2], int files[2], char **envp, char **params);
 int		ft_pipe(char **params, char **envp, int files[2]);
-int		second_command(char **params, char **envp, int files[2]);
 int		standard_behaviour(char **params, char **envp, int files[2]);
 void	free_str_array(char **str_array, int len);
 int		ft_max(int a, int b);
