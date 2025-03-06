@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 18:53:34 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/10/25 10:58:41 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/10/25 12:17:58 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void	leq_five(t_stack *stack_a, t_stack *stack_b)
 		fix_a(stack_a);
 		group_stacks(stack_a, stack_b);
 	}
-		free_stack(stack_a);
-		free_stack(stack_b);
+	free_stack(stack_a);
+	free_stack(stack_b);
 }
 
 //Main Soritng function

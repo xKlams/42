@@ -78,7 +78,7 @@ int	ft_pipe(char **params, char **envp, int files[2])
 		}
 		return (parent(pipefd, files, envp, params));
 	}
-	// if (waitpid(pid, &wstatus, 0) == -1 || WIFEXITED(wstatus) == 0)
+	if (waitpid(pid, &wstatus, 0) == -1 || WIFEXITED(wstatus) == 0)
 	exit(1);
 	return (EXIT_FAILURE);
 }

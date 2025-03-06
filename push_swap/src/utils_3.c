@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 18:16:24 by fde-sist          #+#    #+#             */
-/*   Updated: 2024/10/25 11:34:48 by fde-sist         ###   ########.fr       */
+/*   Updated: 2024/10/28 12:34:04 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	modulo_sorted_pos(t_stack stack, int element)
 {
 	int	i;
 	int	min;
-	
+
 	i = 0;
 	min = 0;
 	while (++i < stack.size)
