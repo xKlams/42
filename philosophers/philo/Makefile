@@ -16,16 +16,18 @@ CC = cc
 
 CFLAGS = -g -Wall -Wextra -Werror
 
-SRC = ./src/main.c ./src/init.c ./src/routine.c ./src/p_eat.c
+SRC = ./src/main.c ./src/utils_2.c ./src/init.c ./src/routine.c ./src/p_eat.c ./src/utils.c ./src/init_philo.c
 OBJ = $(SRC:.c=.o)
+
+INCLUDE = -I./libs
 
 all: $(NAME)
 
 $(NAME) : $(OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
+	$(CC) $(CFLAGS) $(INCLUDE) -o $(NAME) $(OBJ)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 clean:
 	rm -f $(OBJ)

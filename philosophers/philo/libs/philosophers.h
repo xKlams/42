@@ -19,9 +19,10 @@
 # include <stdlib.h>
 # include <sys/time.h>
 # include <unistd.h>
+# include <bits/pthreadtypes.h>
 # include <curses.h>
 
-# define MAX_WAIT 3
+# define MAX_WAIT 500
 
 typedef struct s_philo
 {
@@ -29,22 +30,23 @@ typedef struct s_philo
 	pthread_mutex_t		*r_fork;
 	pthread_mutex_t		*death_lock;
 	pthread_mutex_t		*put_lock;
-	pthread_t		process;
-	size_t			*filled_philosophers;
-	size_t			number_of_philo;
-	size_t			starting_time;
-	size_t			id;
-	size_t			time_to_die;
-	size_t			time_to_eat;
-	size_t			time_to_sleep;
-	size_t			number_of_meals;
-	size_t			meals_eaten;
-	size_t			last_meal_time;
-	size_t			is_dead;
-	bool			is_full;
-	bool			*simulation_status;
-	bool			*l_fork_available;
-	bool			*r_fork_available;
+	pthread_mutex_t		*increment_meals;
+	pthread_t			process;
+	size_t				*filled_philosophers;
+	size_t				number_of_philo;
+	size_t				starting_time;
+	size_t				id;
+	size_t				time_to_die;
+	size_t				time_to_eat;
+	size_t				time_to_sleep;
+	size_t				number_of_meals;
+	size_t				meals_eaten;
+	size_t				last_meal_time;
+	size_t				is_dead;
+	bool				is_full;
+	bool				*simulation_status;
+	bool				*l_fork_available;
+	bool				*r_fork_available;
 }	t_philo;
 
 int		ft_atoi(const char *nptr);
@@ -56,10 +58,16 @@ time_t	get_time_in_ms(void);
 bool	is_dead(t_philo *philosopher);
 time_t	get_time_in_ms(void);
 size_t	ft_min(size_t a, size_t b);
+void	*ft_calloc(size_t nmeb, size_t size);
+void	*ft_memset(void *a, int c, size_t lenght);
 void	wait_death(t_philo *philosophers, size_t max_wait);
+t_philo	**init_philo(int argc, char **argv);
+void	set_philo(t_philo **output, char **argv,
+			int argc, size_t *filled_philosophers);
+void	set_forks(t_philo **philo, bool **forks_avaliable,
+			int number_of_philo, pthread_mutex_t **forks);
 void	put_with_lock(char *buffer, t_philo *philo);
 void	p_eat(t_philo *philosophers);
 void	philo_routine(t_philo *philosophers);
-
 
 #endif

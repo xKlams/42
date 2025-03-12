@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   routine.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/12 14:14:20 by fde-sist          #+#    #+#             */
+/*   Updated: 2025/03/12 14:14:23 by fde-sist         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../libs/philosophers.h"
 
 void	p_sleep(t_philo *philosophers)
 {
 	put_with_lock("%ld %ld is sleeping\n", philosophers);
-	usleep(philosophers->time_to_sleep * 1000);
+	wait_death(philosophers, philosophers->time_to_sleep * 1000);
 }
 
 void	p_think(t_philo *philosophers)
@@ -28,11 +40,14 @@ void	philo_routine(t_philo *philosophers)
 	action = 0;
 	while (1)
 	{
-		if (is_dead(philosophers) || !*philosophers->simulation_status)
+		pthread_mutex_lock(philosophers->put_lock);
+		if (!*philosophers->simulation_status)
 			break ;
+		pthread_mutex_unlock(philosophers->put_lock);
 		do_action(philosophers, action);
-		wait_death(philosophers, 10);
+		wait_death(philosophers, MAX_WAIT);
 		action = (action + 1) % 3;
 	}
+	pthread_mutex_unlock(philosophers->put_lock);
 	return ;
 }
