@@ -1,6 +1,5 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
+/*                                                                            */ /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
@@ -35,7 +34,6 @@ int	ft_print_argument(const char string, va_list arguments)
 		return (ft_putchar('%'));
 	return (0);
 }
-
 
 int	ft_printf(const char *string, ...)
 {
