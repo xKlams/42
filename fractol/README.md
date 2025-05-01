@@ -22,7 +22,7 @@ This project renders beautiful and infinitely complex fractals like the Mandelbr
 
 ## Overview
 
-Fract-ol is designed to visualize mathematical fractal sets on your screen. It uses the escape time algorithm to determine how quickly points diverge under repeated iteration of a function, coloring them based on this behavior. The project emphasizes graphical programming concepts, event handling, and optimization within the constraints of the 42 school environment.
+Fractol is designed to visualize mathematical fractal sets on your screen. It uses the escape time algorithm to determine how quickly points diverge under repeated iteration of a function, coloring them based on this behavior. The project emphasizes graphical programming concepts, event handling, and optimization within the constraints of the 42 school environment.
 
 ## Features
 
@@ -48,7 +48,7 @@ Fract-ol is designed to visualize mathematical fractal sets on your screen. It u
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://your-repo-link/fract-ol.git
+    git clone https://your-repo-link/fractol.git
     cd fractol
     ```
 
