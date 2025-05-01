@@ -6,7 +6,7 @@ This project renders beautiful and infinitely complex fractals like the Mandelbr
 
 [![Language](https://img.shields.io/badge/Language-C-blue.svg)](https://en.wikipedia.org/wiki/C_(programming_language))
 [![Norm](https://img.shields.io/badge/Norm-42%20Norm-brightgreen.svg)](https://github.com/42School/norminette)
-[![Library](https://img.shields.io/badge/Library-MiniLibX-lightgrey.svg)](https://github.com/42Paris/minilibx-linux) <!-- Adjust link if needed -->
+[![Library](https://img.shields.io/badge/Library-MiniLibX-lightgrey.svg)](https://github.com/42Paris/minilibx-linux) 
 
 ## Table of Contents
 
@@ -26,12 +26,11 @@ Fractol is designed to visualize mathematical fractal sets on your screen. It us
 
 ## Features
 
-*   **Multiple Fractal Sets:** Renders the Mandelbrot set and customizable Julia sets. *(Add any other fractals you implemented, e.g., Burning Ship)*
+*   **Multiple Fractal Sets:** Renders the Mandelbrot set, the burning ship set and customizable Julia sets.
 *   **Interactive Zoom:** Zoom in and out using the mouse wheel for deep exploration.
-*   **Panning:** Navigate the fractal space using arrow keys *(or specify if you use mouse drag)*.
-*   **Iteration Control:** Increase or decrease the maximum iterations to reveal more detail or speed up rendering.
+*   **Panning:** Navigate the fractal space using arrow keys.
 *   **Color Shifting:** Cycle through different color palettes or apply color transformations.
-*   **Dynamic Julia Parameters:** (Optional) Allow changing the Julia set's constant parameters interactively or via command line.
+*   **Dynamic Julia Parameters:** Allow changing the Julia set's constant parameters interactively or via command line.
 *   **MiniLibX Integration:** Utilizes the 42 graphics library for window management, drawing, and event handling.
 
 
@@ -53,7 +52,6 @@ Fractol is designed to visualize mathematical fractal sets on your screen. It us
     ```
 
 2.  **Compile the project:**
-    *(Ensure your Makefile correctly links MiniLibX. You might need to adjust paths in the Makefile depending on your MiniLibX setup.)*
     ```bash
     make
     ```
@@ -88,7 +86,6 @@ Run the compiled executable from your terminal, specifying the fractal type.
     # Example: Render Julia set with c = -0.7 + 0.27015i
     ./fractol julia -0.7 0.27015
     ```
-    *(Specify the exact parameter format you expect, e.g., space-separated, comma-separated)*
 
 *   **Render Burning ship**
     ```bash
@@ -120,7 +117,7 @@ Run the compiled executable from your terminal, specifying the fractal type.
 
 *   **Algorithm:** Implements the Escape Time Algorithm.
 *   **Complex Numbers:** Utilizes basic complex number arithmetic (addition, multiplication, magnitude).
-*   **Graphics:** Renders pixel by pixel using MiniLibX's image buffer functions (`mlx_pixel_put` or image manipulation functions for better performance).
+*   **Graphics:** using MiniLibX's image manipulation functions for efficient rendering, rather than mlx_pixel_put.
 *   **Event Handling:** Uses MiniLibX hooks (`mlx_hook`, `mlx_loop_hook`) to manage keyboard and mouse input, as well as window events (like closing).
 
 ## Author
