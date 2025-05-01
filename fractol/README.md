@@ -1,4 +1,4 @@
-# Fract-ol ✨
+# Fractol ✨
 
 **A captivating fractal exploration program developed as part of the 42 curriculum.**
 
@@ -49,7 +49,7 @@ Fract-ol is designed to visualize mathematical fractal sets on your screen. It u
 1.  **Clone the repository:**
     ```bash
     git clone https://your-repo-link/fract-ol.git
-    cd fract-ol
+    cd fractol
     ```
 
 2.  **Compile the project:**
@@ -90,22 +90,14 @@ Run the compiled executable from your terminal, specifying the fractal type.
     ```
     *(Specify the exact parameter format you expect, e.g., space-separated, comma-separated)*
 
-*   **(Add examples for other fractals if implemented)**
+*   **Render Burning ship**
     ```bash
     # Example: Render Burning Ship
     ./fractol burningship
     ```
 
-*   **No arguments or invalid name:**
-    *(Describe what happens - does it show a usage message, default to Mandelbrot?)*
-    ```bash
-    ./fractol
-    # Output: Usage: ./fractol <mandelbrot|julia [c_re c_im]|burningship>
-    ```
-
 ## Controls
 
-*(List the exact controls you implemented)*
 
 | Key / Action        | Function                             |
 | :------------------ | :----------------------------------- |
@@ -116,22 +108,13 @@ Run the compiled executable from your terminal, specifying the fractal type.
 | `↓` (Down Arrow)    | Pan Down                             |
 | `←` (Left Arrow)    | Pan Left                             |
 | `→` (Right Arrow)   | Pan Right                            |
-| `+` / `NumPad +`    | Increase maximum iterations          |
-| `-` / `NumPad -`    | Decrease maximum iterations          |
 | `C`                 | Change color scheme / shift colors |
-| `R`                 | Reset view to default                |
-| `1`                 | Switch to Mandelbrot                 |
-| `2`                 | Switch to Julia                      |
-| *(Add other keys...)* | *(Describe their function...)*       |
-
-*(Adjust the table based on your specific implementation. Specify if panning follows the mouse, etc.)*
 
 ## Supported Fractals
 
 *   **`mandelbrot`**: The classic Mandelbrot set (Z = Z² + C, where C starts as the coordinate).
 *   **`julia`**: Julia sets (Z = Z² + C, where C is a constant provided as parameters).
-*   **(Optional) `burningship`**: The Burning Ship fractal (similar to Mandelbrot but uses absolute values).
-*   *(Add any other fractal names your program accepts)*
+*   ** `burningship`**: The Burning Ship fractal (similar to Mandelbrot but uses absolute values).
 
 ## Technical Aspects
 
@@ -139,7 +122,6 @@ Run the compiled executable from your terminal, specifying the fractal type.
 *   **Complex Numbers:** Utilizes basic complex number arithmetic (addition, multiplication, magnitude).
 *   **Graphics:** Renders pixel by pixel using MiniLibX's image buffer functions (`mlx_pixel_put` or image manipulation functions for better performance).
 *   **Event Handling:** Uses MiniLibX hooks (`mlx_hook`, `mlx_loop_hook`) to manage keyboard and mouse input, as well as window events (like closing).
-*   **(Optional) Optimization:** Mention any specific optimizations like multi-threading (if used), fixed-point arithmetic (unlikely but possible), or efficient image buffer updates.
 
 ## Author
 
