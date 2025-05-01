@@ -34,7 +34,6 @@ Here you'll find all the projects I’ve completed during my journey at [42](htt
 
 - Most projects are written in **C**.
 - Compilation is usually done via `Makefile`.
-- Follow the subject PDF in each folder for more context.
 - Norminette rules were strictly followed (where applicable).
 
 ---
