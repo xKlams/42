@@ -5,19 +5,14 @@
 #include <iostream>
 #include <iomanip>
 
-#define FIRST_NAME 0
-#define LAST_NAME 1
-#define NICKNAME 2
-#define PHONE_NUMBER 3;
-#define SECRET 4
-
+#define CONTACT_SIZE 5
 class contact {
 private:
-
-	std::string contact_info[5];
+	std::string contact_info[CONTACT_SIZE];
 public:
-	void set_contact();
-	void get_contact(int ID) const;
+	void		set_contact();
+	void		get_contact(int ID) const;
+	std::string	get_info(int index) const;
 };
 
 

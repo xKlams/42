@@ -2,7 +2,6 @@
 
 int main()
 {
-	std::cout << "everything is cool!" << std::endl;
 	phonebook phonebook;
 	std::string command;
 

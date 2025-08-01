@@ -1,4 +1,5 @@
 #include "../include/contact.hpp"
+#include <string>
 
 void contact::set_contact()
 {
@@ -28,4 +29,9 @@ void contact::get_contact(int ID) const
 			std::cout << std::setw(10) << contact_info[i].substr(0,9) + "." << "|";
 	}
 	std::cout << std::endl;
+}
+
+std::string contact::get_info(int index) const
+{
+	return (this->contact_info[index]);
 }
