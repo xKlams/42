@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.cpp                                      :+:      :+:    :+:   */
+/*   Phonebook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,25 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/phonebook.hpp"
+#include "../include/Phonebook.hpp"
 #include <cstddef>
 #include <iostream>
 
-void	phonebook::add()
+void	Phonebook::add()
 {
 	this->contacts[new_contact_index].set_contact();
 	this->size++;
 	this->new_contact_index = (this->new_contact_index + 1) % 8;
 }
 
-phonebook::phonebook()
+Phonebook::Phonebook()
 {
 	this->new_contact_index = 0;
 	this->size = 0;
 	return;
 }
 
-void	phonebook::search() const
+void	Phonebook::search() const
 {
 	std::string	tab_names[4] = {"index", "first bame", "last name", "nickname"};
 	std::string	contact_fields[5] = {"first bame", "last name", "nickname", "phone number", "darkest secret"};

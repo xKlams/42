@@ -1,8 +1,8 @@
-#include "../include/phonebook.hpp"
+#include "../include/Phonebook.hpp"
 
 int main()
 {
-	phonebook phonebook;
+	Phonebook phonebook;
 	std::string command;
 
 	while (true)

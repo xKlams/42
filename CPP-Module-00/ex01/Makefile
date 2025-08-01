@@ -21,7 +21,7 @@ SRC_DIR = src/
 OBJ_DIR = obj/
 INCLUDE_DIR = include/
 
-SRC_FILES = phonebook.cpp contact.cpp main.cpp
+SRC_FILES = Phonebook.cpp Contact.cpp main.cpp
 OBJ_FILES = $(SRC_FILES:.cpp=.o)
 
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))

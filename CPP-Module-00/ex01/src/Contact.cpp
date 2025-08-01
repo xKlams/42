@@ -1,7 +1,7 @@
-#include "../include/contact.hpp"
+#include "../include/Contact.hpp"
 #include <string>
 
-void contact::set_contact()
+void Contact::set_contact()
 {
 	std::string contact_fields[5] = {"first bame", "last name", "nickname", "phone number", "darkest secret"};
 
@@ -18,7 +18,7 @@ void contact::set_contact()
 	std::cout << "Contatto aggiunto correttamente" << std::endl;
 }
 
-void contact::get_contact(int ID) const
+void Contact::get_contact(int ID) const
 {
 	std::cout << "|" << std::setfill(' ') << std::setw(10) << ID << "|";
 	for (int i = 0; i < 3; i++)
@@ -31,7 +31,7 @@ void contact::get_contact(int ID) const
 	std::cout << std::endl;
 }
 
-std::string contact::get_info(int index) const
+std::string Contact::get_info(int index) const
 {
 	return (this->contact_info[index]);
 }

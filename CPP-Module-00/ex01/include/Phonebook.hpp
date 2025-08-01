@@ -5,16 +5,16 @@
 #include <string>
 #include <iostream>
 #include <iomanip>
-#include "contact.hpp"
+#include "Contact.hpp"
 
-class phonebook
+class Phonebook
 {
 private:
-	contact contacts[8];
+	Contact contacts[8];
 	size_t	new_contact_index;
 	size_t	size;
 public:
-	phonebook();
+	Phonebook();
 	void add();
 	void search() const;
 };

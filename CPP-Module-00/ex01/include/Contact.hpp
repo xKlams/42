@@ -6,7 +6,7 @@
 #include <iomanip>
 
 #define CONTACT_SIZE 5
-class contact {
+class Contact {
 private:
 	std::string contact_info[CONTACT_SIZE];
 public:
