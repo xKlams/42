@@ -1,0 +1,44 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=c++98",
+      "-Iinclude/",
+      "-c",
+      "-o",
+      "obj/main.o",
+      "src/main.cpp"
+    ],
+    "directory": "/home/klams_desktop/42/CPP-Module-01/ex01",
+    "file": "/home/klams_desktop/42/CPP-Module-01/ex01/src/main.cpp",
+    "output": "/home/klams_desktop/42/CPP-Module-01/ex01/obj/main.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=c++98",
+      "-Iinclude/",
+      "-c",
+      "-o",
+      "obj/Zombie.o",
+      "src/Zombie.cpp"
+    ],
+    "directory": "/home/klams_desktop/42/CPP-Module-01/ex01",
+    "file": "/home/klams_desktop/42/CPP-Module-01/ex01/src/Zombie.cpp",
+    "output": "/home/klams_desktop/42/CPP-Module-01/ex01/obj/Zombie.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=c++98",
+      "-Iinclude/",
+      "-c",
+      "-o",
+      "obj/zombieHorde.o",
+      "src/zombieHorde.cpp"
+    ],
+    "directory": "/home/klams_desktop/42/CPP-Module-01/ex01",
+    "file": "/home/klams_desktop/42/CPP-Module-01/ex01/src/zombieHorde.cpp",
+    "output": "/home/klams_desktop/42/CPP-Module-01/ex01/obj/zombieHorde.o"
+  }
+]
