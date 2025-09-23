@@ -1,4 +1,5 @@
 /mlx
+compile_commands.json
 .gbd_history
 .vscode
 *.o
