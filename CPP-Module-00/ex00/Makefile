@@ -16,19 +16,27 @@ CC = c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = ./megaphone.cpp
-OBJ = $(SRC:.c=.o)
+
+SRC_DIR = src/
+OBJ_DIR = obj/
+
+SRC_FILES = megaphone.cpp
+OBJ_FILES = $(SRC_FILES:.cpp=.o)
+
+SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
+OBJ = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
 
 all: $(NAME)
 
 $(NAME) : $(OBJ)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+$(OBJ_DIR)%.o: $(SRC_DIR)%.cpp
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ)
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
 	rm -f $(NAME)

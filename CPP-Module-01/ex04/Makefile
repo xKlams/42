@@ -14,8 +14,7 @@ NAME = replacer
 
 CC = c++
 
-CFLAGS = -std=c++98
-
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC_DIR = src/
 OBJ_DIR = obj/
