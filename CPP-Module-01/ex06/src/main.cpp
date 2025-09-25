@@ -1,14 +1,14 @@
 #include "Harl.hpp"
 
-int main()
+int main(int argc, char **argv)
 {
 	Harl	Karen;
-	std::string	complains[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 
-	for (int i = 0; i < 4; i++)
+	if (argc != 2)
 	{
-		std::cout << "Testcase with level = " << complains[i] << std::endl;
-		Karen.complain(complains[i]);
+		std::cout << "Usage: ./harlFilter \"LEVEL\"" << std::endl;
+		return (1);
 	}
+	Karen.complain(argv[1]);
 }
 

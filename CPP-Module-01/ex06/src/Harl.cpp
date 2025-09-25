@@ -52,7 +52,7 @@ void	Harl::complain(std::string level)
 			break;
 		default:
 			std::cout << "\033[0m";
-			std::cout << "level not found" << std::endl;
+			std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
 	}
 	std::cout << "\033[0m";
 }
