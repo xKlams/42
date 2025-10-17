@@ -1,4 +1,16 @@
-#include "../include/Contact.hpp"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Contact.cpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/17 15:58:13 by fde-sist          #+#    #+#             */
+/*   Updated: 2025/10/17 16:02:35 by fde-sist         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "Contact.hpp"
 #include <string>
 
 void Contact::set_contact()
@@ -21,7 +33,7 @@ void Contact::set_contact()
 			i--;
 		}
 	}
-	std::cout << "Contatto aggiunto correttamente" << std::endl;
+	std::cout << "Contact added correctly" << std::endl;
 }
 
 void Contact::get_contact(int ID) const
