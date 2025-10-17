@@ -17,7 +17,8 @@
 void	Phonebook::add()
 {
 	this->contacts[new_contact_index].set_contact();
-	this->size++;
+	if (size < 8)
+		this->size++;
 	this->new_contact_index = (this->new_contact_index + 1) % 8;
 }
 
@@ -30,10 +31,15 @@ Phonebook::Phonebook()
 
 void	Phonebook::search() const
 {
-	std::string	tab_names[4] = {"index", "first bame", "last name", "nickname"};
-	std::string	contact_fields[5] = {"first bame", "last name", "nickname", "phone number", "darkest secret"};
+	std::string	tab_names[4] = {"index", "first name", "last name", "nickname"};
+	std::string	contact_fields[5] = {"first name", "last name", "nickname", "phone number", "darkest secret"};
 	std::string	choosen_index;
 
+	if (this->size == 0)
+	{
+		std::cout << "Your Phonebook is empty" << std::endl;
+		return ;
+	}
 	for (int i = 0; i <= 44; i++)
 		std::cout << "-";
 	std::cout << std::endl;
