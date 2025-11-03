@@ -6,7 +6,7 @@
 /*   By: fde-sist <fde-sist@student.42roma.it>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 10:17:39 by fde-sist          #+#    #+#             */
-/*   Updated: 2025/10/17 16:00:05 by fde-sist         ###   ########.fr       */
+/*   Updated: 2025/10/17 17:37:06 by fde-sist         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,6 @@ void	Phonebook::search() const
 	std::string	contact_fields[5] = {"first name", "last name", "nickname", "phone number", "darkest secret"};
 	std::string	choosen_index;
 
-	if (this->size == 0)
-	{
-		std::cout << "Your Phonebook is empty" << std::endl;
-		return ;
-	}
 	for (int i = 0; i <= 44; i++)
 		std::cout << "-";
 	std::cout << std::endl;
@@ -52,9 +47,11 @@ void	Phonebook::search() const
 	for (int i = 0; i <= 44; i++)
 		std::cout << "-";
 	std::cout << std::endl;
+	if (this->size == 0)
+		return ;
 	std::cout << "Insert index: ";
 	std::getline(std::cin, choosen_index);
-	while (choosen_index.length() != 1 || !((size_t)choosen_index[0] >= '0' && (size_t)choosen_index[0] <= this->size + '0'))
+	while (choosen_index.length() != 1 || !((size_t)choosen_index[0] >= '0' && (size_t)choosen_index[0] < this->size + '0'))
 	{
 		std::cout << "Provided input is not a valid index" << std::endl;
 		std::cout << "Insert index: ";

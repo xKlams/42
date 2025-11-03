@@ -1,5 +1,4 @@
 #include "replacer.hpp"
-#include <ostream>
 
 void	process_file(char *filename, std::string s1, std::string s2)
 {
