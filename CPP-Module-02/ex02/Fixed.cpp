@@ -11,7 +11,7 @@ Fixed::Fixed(void):  _number_value(0)
 Fixed::Fixed(const int num)
 {
 	// std::cout << "Integer constructor called" << std::endl;
-	this->_number_value = num  * (1 << this->_fractional_bits);
+	this->_number_value = roundf(num  * (1 << this->_fractional_bits));
 }
 
 Fixed::Fixed(const float num)

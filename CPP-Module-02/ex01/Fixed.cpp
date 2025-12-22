@@ -1,4 +1,5 @@
 #include "Fixed.hpp"
+#include <cmath>
 
 const int Fixed::_fractional_bits = 8;
 
@@ -10,13 +11,13 @@ Fixed::Fixed(void):  _number_value(0)
 Fixed::Fixed(const int num)
 {
 	std::cout << "Integer constructor called" << std::endl;
-	this->_number_value = num  * (1 << this->_fractional_bits);
+	this->_number_value = roundf(num  * (1 << this->_fractional_bits));
 }
 
 Fixed::Fixed(const float num)
 {
 	std::cout << "Float constructor called" << std::endl;
-	this->_number_value = (int) (num  * (1 << this->_fractional_bits));
+	this->_number_value = (int) roundf(num  * (1 << this->_fractional_bits));
 }
 
 Fixed::Fixed(const Fixed &copy)
